@@ -2,74 +2,85 @@
 
 [![npm](https://img.shields.io/npm/v/@paro-paro/eslint-config.svg?color=a1b858)](https://npmjs.com/package/@paro-paro/eslint-config)
 
-ESLint [flat](https://eslint.org/docs/latest/use/configure/configuration-files-new) config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, Markdown.
+ESLint flat config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, Markdown.
 
 Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.com/antfu/eslint-config) 
 
 ## Features
 
-- 2 lines setup.
-- 1 tool for both linting & formatting (no prettier). 
-- Strict (although sensible) out-of-the-box preset.
-- Fully customizable. Easily composable.
-- Vue auto detection.
-- First class TypeScript support.
-- Powered by [@stylistic](https://eslint.style/) and more.
+* One line setup!
 
-## Supported plugins
+* ESLint for both linting & formatting (no prettier).
 
-- wip
+* Strict (although reasonable) out-of-the-box preset.
+
+* Fully customizable. Easily composable.
+
+* First class TypeScript support.
+
+* Vue auto detection.
+
+* Powered by [@stylistic](https://eslint.style/) and [many more](https://github.com/paro-paro/eslint-config#supported-plugins).
 
 ## Install
 
-```bash
-npm i -D @paro-paro/eslint-config
-```
-
-```bash
-yarn add -D @paro-paro/eslint-config
-```
+Use your favorite package manager.
 
 ```bash
 pnpm add -D @paro-paro/eslint-config
-```
+``` 
 
 > Requires `eslint >= 8.21.0`
 
 ## Usage
 
+`eslint.config.js`
+
 ```js
-// eslint.config.js
 import { paroparo } from '@paro-paro/eslint-config'
 
 export default paroparo()
 ```
 
-And that's it!
+And that's it! :muscle:
+
+*Note:* This setup assumes that you are using ESM in your project by setting `type: "module"` in package.json.
+
+Even though is **highly discouraged**, you can use CommonJS as well.
+
+```js
+const { paroparo } = require('@paro-paro/eslint-config')
+
+module.exports = paroparo()
+```
 
 ### Configuration
 
+Make sure you read the [eslint flat config documentation](https://eslint.org/docs/latest/use/configure/configuration-files-new) first.
+
 ```js
-// eslint.config.js
 import { paroparo } from '@paro-paro/eslint-config'
 
 export default paroparo(
   { 
-    // configuration options (see below)
+    // configuration options for paroparo preset (see below)
   },
 
-  // pass as many flat config objects as you need and extend/override the configuration limitless!
+  // extend/override the configuration by passing a(n)y number of flat config objects
   {
     files: ['**/*.ts'],
     rules: {
       'no-console': 'off',
       'import/order': 'off',
-      'perfectionist/sort-keys': 'warn'
+      'perfectionist/sort-keys': 'error'
     },
   },
-  
+
   {
-    ignores: ['**/files'],
+    files: ['**/*.vue'],
+    rules: {
+      'vue/no-unused-refs': 'warn',
+    },
   },
   
   // ...
@@ -80,7 +91,6 @@ export default paroparo(
 
 ```jsonc
 {
-  "prettier.enable": false, // disable prettier!
   "eslint.enable": true,
   "eslint.experimental.useFlatConfig": true,
   "eslint.validate": [
@@ -93,9 +103,83 @@ export default paroparo(
     "jsonc",
     "yaml",
     "markdown"
-  ]
+  ],
+  
+  // editor auto-fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
+  },
+
+  // disable prettier
+  "prettier.enable": false
 }
 ```
+
+### Configuration Options
+
+#### Types
+
+```ts
+function paroparo(options?: ConfigOptions, ...userConfigs: FlatESLintConfigItem[]): FlatESLintConfigItem[]
+
+interface ConfigOptions {
+  ts?: boolean
+  vue?: boolean
+  json?: boolean
+  yaml?: boolean
+  markdown?: boolean
+  stylistic?: boolean
+  perfectionist?: boolean
+  extendIgnores?: ExtendIgnores
+  tsOptions?: TsOptions
+  stylisticOptions?: StylisticOptions
+}
+```
+
+[Check Types](https://github.com/paro-paro/eslint-config/blob/main/src/types.ts)
+
+#### Details
+
+* Rules for `typescript`, `json`, `yaml`, `markdown` and `stylistic` are enabled by default. 
+
+* Rules for `vue` will be automatically enabled if `vue`, `nuxt` or `vitepress` packages are locally installed.
+
+* You can explicitly `enable/disable` them by setting the appropiate option to `true/false`.
+
+* `tsOptions` and `stylisticOptions` have no effect if `ts` or `stylistic` are explicitly disabled.
+
+* Use the `extendIgnores` option if you need to extend or override the predefined set of global ignores.
+
+* ESLint flat config does not use `.eslintignore` anymore.
+
+* The `perfectionist` plugin is installed by default but no rules are enabled.
+
+## Supported plugins
+
+| Plugin | Rules prefix |
+| --- | --- | 
+| [@stylistic/eslint-plugin](https://eslint.style)                                            | `@stylistic/*` |
+| [@typescript-eslint/eslint-plugin](https://typescript-eslint.io)                            | `@typescript-eslint/*` |
+| [eslint-plugin-antfu](https://github.com/antfu/eslint-plugin-antfu)                         | `antfu/*` |
+| [eslint-plugin-eslint-comments](https://mysticatea.github.io/eslint-plugin-eslint-comments) | `eslint-comments/*` |
+| [eslint-plugin-i](https://github.com/un-es/eslint-plugin-i)                                 | `import/*` |
+| [eslint-plugin-jsonc](https://github.com/ota-meshi/eslint-plugin-jsonc)                     | `jsonc/*` |
+| [eslint-plugin-markdown](https://github.com/eslint/eslint-plugin-markdown)                  | - |
+| [eslint-plugin-n](https://github.com/eslint-community/eslint-plugin-n )                     | `node/*` |
+| [eslint-plugin-perfectionist](https://eslint-plugin-perfectionist.azat.io)                  | `perfectionist/*` |
+| [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)              | `unicorn/*` |
+| [eslint-plugin-unused-imports](https://github.com/sweepline/eslint-plugin-unused-imports)   | `unused-imports/*` |
+| [eslint-plugin-vue](https://eslint.vuejs.org)                                               | `vue/*` |
+| [eslint-plugin-yml](https://github.com/ota-meshi/eslint-plugin-yml)                         | `yml/*` |
+
+## Wiki
+
+You can read more about the rationale behind not using prettier in this great post [Why I don't use Prettier](https://antfu.me/posts/why-not-prettier) from Anthony Fu.
+
+Also, there is a great [utility package](https://www.npmjs.com/package/eslint-flat-config-viewer) for debugging your eslint flat config (Anthony, again :astonished:).
+
+All credit to his outstanding and inspirational work: [Anthony Fu](https://github.com/antfu)
 
 ## License
 
