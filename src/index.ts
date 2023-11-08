@@ -1,12 +1,12 @@
 import { GLOB_JS, GLOB_TS } from './globs'
 import { json, overrides, stylistic, typescript, vue, yaml } from './configs'
-import { getBaseConfig } from './utils'
+import { autoDetectVue, getBaseConfig } from './utils'
 import type { FlatESLintConfigItem, OptionsUser } from './types'
 
 export function paroparo(options: OptionsUser = {}, ...userConfigs: FlatESLintConfigItem[]): FlatESLintConfigItem[] {
   const {
     ts: enableTs = true,
-    vue: enableVue = true,
+    vue: enableVue = autoDetectVue(),
     json: enableJson = true,
     yaml: enableYaml = true,
     stylistic: enableStylistic = true,

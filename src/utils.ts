@@ -1,3 +1,4 @@
+import { isPackageExists } from 'local-pkg'
 import {
   comments,
   ignores,
@@ -8,6 +9,8 @@ import {
   unicorn,
 } from './configs'
 import type { FlatESLintConfigItem } from './types'
+
+const vuePackages = ['vue', 'nuxt', 'vitepress']
 
 export function getBaseConfig(
   files: string[],
@@ -30,4 +33,8 @@ export function getBaseConfig(
 
     ...comments({ files }),
   ]
+}
+
+export function autoDetectVue(): boolean {
+  return vuePackages.some(i => isPackageExists(i))
 }
