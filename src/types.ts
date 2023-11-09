@@ -4,74 +4,40 @@ interface FlatESLintConfigItemExtended extends FlatESLintConfigItem {
   name?: string
 }
 
-interface OptionsBase {
-  files: string[]
+interface ConfigOptions {
+  ts?: boolean
+  vue?: boolean
+  json?: boolean
+  yaml?: boolean
+  jsdoc?: boolean
+  markdown?: boolean
+  perfectionist?: boolean
+  stylistic?: boolean
+  tsOptions?: TsOptions
+  stylisticOptions?: StylisticOptions
+  extendIgnores?: ExtendIgnores
 }
 
-interface OptionsShared extends OptionsBase {
-  enableTs: boolean
-  enableStylistic: boolean
-  enablePerfectionist: boolean
-}
-
-interface OptionsJavascript extends OptionsBase {}
-interface OptionsNode extends OptionsBase {}
-interface OptionsImports extends OptionsBase {}
-interface OptionsUnicorn extends OptionsBase {}
-interface OptionsComments extends OptionsBase {}
-
-interface OptionsTypescript {
+interface TsOptions {
   isTypeAwareRules?: boolean
 }
 
-interface OptionsStylistic {
+interface StylisticOptions {
   jsx?: boolean
   indent?: number | 'tab'
   quotes?: 'single' | 'double'
 }
 
-interface OptionsVue {
-  enableTs: boolean
-  enableStylistic: boolean
-  indent?: number | 'tab'
-}
-
-interface OptionsJson {
-  enableStylistic: boolean
-  indent?: number | 'tab'
-}
-
-interface OptionsYaml {
-  enableStylistic: boolean
-  indent?: number | 'tab'
-  quotes?: 'single' | 'double'
-}
-
-interface OptionsUser {
-  ts?: boolean
-  vue?: boolean
-  json?: boolean
-  yaml?: boolean
-  markdown?: boolean
-  stylistic?: boolean
-  perfectionist?: boolean
-  tsOptions?: OptionsTypescript
-  stylisticOptions?: OptionsStylistic
+type ExtendIgnores = string[] | {
+  globs: string[]
+  override?: boolean
 }
 
 export type {
   FlatESLintConfigItem,
   FlatESLintConfigItemExtended,
-  OptionsShared,
-  OptionsJavascript,
-  OptionsNode,
-  OptionsImports,
-  OptionsUnicorn,
-  OptionsComments,
-  OptionsTypescript,
-  OptionsStylistic,
-  OptionsUser,
-  OptionsVue,
-  OptionsJson,
-  OptionsYaml,
+  ConfigOptions,
+  TsOptions,
+  StylisticOptions,
+  ExtendIgnores,
 }

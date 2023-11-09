@@ -1,10 +1,6 @@
-import type { FlatESLintConfigItemExtended, OptionsUnicorn } from '../types'
+import type { FlatESLintConfigItemExtended } from '../types'
 
-export function unicorn(options: OptionsUnicorn): FlatESLintConfigItemExtended[] {
-  const {
-    files,
-  } = options
-
+export function unicorn(files: string[]): FlatESLintConfigItemExtended[] {
   return [
     {
       files,
@@ -16,13 +12,7 @@ export function unicorn(options: OptionsUnicorn): FlatESLintConfigItemExtended[]
         'unicorn/error-message': 'error',
         'unicorn/escape-case': 'error',
         'unicorn/explicit-length-check': 'error',
-        'unicorn/filename-case': [
-          'error',
-          {
-            cases: { kebabCase: true, pascalCase: true },
-            ignore: [/^[A-Z]+\..*$/],
-          },
-        ],
+        'unicorn/filename-case': ['error', { cases: { kebabCase: true, pascalCase: true }, ignore: [/^[A-Z]+\..*$/] }],
         'unicorn/new-for-builtins': 'error',
         'unicorn/no-array-callback-reference': 'error',
         'unicorn/no-array-method-this-argument': 'error',

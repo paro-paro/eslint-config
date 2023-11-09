@@ -8,33 +8,53 @@ import {
   shared,
   unicorn,
 } from './configs'
-import type { FlatESLintConfigItem } from './types'
+import type { ExtendIgnores, FlatESLintConfigItem } from './types'
 
-const vuePackages = ['vue', 'nuxt', 'vitepress']
+interface BaseConfigOptions {
+  files: string[]
+  enableTs: boolean
+  enableJsdoc: boolean
+  enablePerfectionist: boolean
+  enableStylistic: boolean
+  extendIgnores: ExtendIgnores
+}
 
-export function getBaseConfig(
-  files: string[],
-  enableTs: boolean,
-  enableStylistic: boolean,
-  enablePerfectionist: boolean,
-): FlatESLintConfigItem[] {
-  return [
-    ...ignores,
+const typescript = ['typescript']
+const vue = ['vue', 'nuxt', 'vitepress']
 
-    ...shared({ files, enableTs, enableStylistic, enablePerfectionist }),
-
-    ...javascript({ files }),
-
-    ...node({ files }),
-
-    ...imports({ files }),
-
-    ...unicorn({ files }),
-
-    ...comments({ files }),
-  ]
+export function autoDetectTs(): boolean {
+  return typescript.some(i => isPackageExists(i))
 }
 
 export function autoDetectVue(): boolean {
-  return vuePackages.some(i => isPackageExists(i))
+  return vue.some(i => isPackageExists(i))
+}
+
+export function getBaseConfig(options: BaseConfigOptions): FlatESLintConfigItem[] {
+  const {
+    files,
+    enableTs,
+    enableJsdoc,
+    enableStylistic,
+    enablePerfectionist,
+    extendIgnores,
+  } = options
+
+  return [
+    ...ignores(extendIgnores),
+
+    ...shared({
+      files,
+      enableTs,
+      enableJsdoc,
+      enableStylistic,
+      enablePerfectionist,
+    }),
+
+    ...javascript(files),
+    ...node(files),
+    ...imports(files),
+    ...unicorn(files),
+    ...comments(files),
+  ]
 }

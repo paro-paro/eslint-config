@@ -3,6 +3,7 @@ import {
   pluginAntfu,
   pluginComments,
   pluginImport,
+  pluginJsdoc,
   pluginNode,
   pluginPerfectionist,
   pluginStylistic,
@@ -10,19 +11,31 @@ import {
   pluginUnicorn,
   pluginUnusedImports,
 } from '../plugins'
-import type { FlatESLintConfigItemExtended, OptionsShared } from '../types'
+import type { FlatESLintConfigItemExtended } from '../types'
 
+interface OptionsShared {
+  files: string[]
+  enableTs: boolean
+  enableJsdoc: boolean
+  enablePerfectionist: boolean
+  enableStylistic: boolean
+}
+
+/* eslint-disable perfectionist/sort-objects */
 export function shared(options: OptionsShared): FlatESLintConfigItemExtended[] {
   const {
+    files,
+    enableTs,
+    enableJsdoc,
     enablePerfectionist,
     enableStylistic,
-    enableTs,
-    files,
   } = options
 
   return [
     {
       files,
+      name: 'config:shared:globals:plugins',
+
       languageOptions: {
         globals: {
           ...globals.node,
@@ -30,10 +43,12 @@ export function shared(options: OptionsShared): FlatESLintConfigItemExtended[] {
           ...globals.es2021,
         },
       },
+
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
-      name: 'config:globals:plugins',
+
+      /* eslint-enable perfectionist/sort-objects */
       plugins: {
         'antfu': pluginAntfu,
         'eslint-comments': pluginComments,
@@ -42,16 +57,20 @@ export function shared(options: OptionsShared): FlatESLintConfigItemExtended[] {
         'unicorn': pluginUnicorn,
         'unused-imports': pluginUnusedImports,
 
-        ...enableTs && {
-          '@typescript-eslint': pluginTs as any,
+        ...enableJsdoc && {
+          jsdoc: pluginJsdoc,
+        },
+
+        ...enablePerfectionist && {
+          perfectionist: pluginPerfectionist,
         },
 
         ...enableStylistic && {
           '@stylistic': pluginStylistic,
         },
 
-        ...enablePerfectionist && {
-          perfectionist: pluginPerfectionist,
+        ...enableTs && {
+          '@typescript-eslint': pluginTs,
         },
       },
     },

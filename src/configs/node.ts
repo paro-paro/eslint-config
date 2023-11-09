@@ -1,10 +1,6 @@
-import type { FlatESLintConfigItemExtended, OptionsNode } from '../types'
+import type { FlatESLintConfigItemExtended } from '../types'
 
-export function node(options: OptionsNode): FlatESLintConfigItemExtended[] {
-  const {
-    files,
-  } = options
-
+export function node(files: string[]): FlatESLintConfigItemExtended[] {
   return [
     {
       files,

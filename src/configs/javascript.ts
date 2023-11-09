@@ -1,24 +1,23 @@
-import type { FlatESLintConfigItemExtended, OptionsJavascript } from '../types'
+import type { FlatESLintConfigItemExtended } from '../types'
 
-export function javascript(options: OptionsJavascript): FlatESLintConfigItemExtended[] {
-  const {
-    files,
-  } = options
-
+/* eslint-disable perfectionist/sort-objects */
+export function javascript(files: string[]): FlatESLintConfigItemExtended[] {
   return [
     {
       files,
+      name: 'config:javascript',
+
       languageOptions: {
         ecmaVersion: 'latest',
-        parserOptions: {
-          ecmaFeatures: {
-            jsx: true,
-          },
-          sourceType: 'module',
-        },
         sourceType: 'module',
+        parserOptions: {
+          parser: 'espree',
+          sourceType: 'module',
+          ecmaFeatures: { jsx: true },
+        },
       },
-      name: 'config:javascript',
+
+      /* eslint-enable perfectionist/sort-objects */
       rules: {
         'accessor-pairs': ['error', { enforceForClassMembers: true, setWithoutGet: true }],
         'array-callback-return': 'error',
@@ -79,7 +78,11 @@ export function javascript(options: OptionsJavascript): FlatESLintConfigItemExte
         'no-prototype-builtins': 'error',
         'no-redeclare': ['error', { builtinGlobals: false }],
         'no-regex-spaces': 'error',
-        'no-restricted-globals': ['error', { message: 'Use `globalThis` instead.', name: 'global' }, { message: 'Use `globalThis` instead.', name: 'self' }],
+        'no-restricted-globals': [
+          'error',
+          { message: 'Use `globalThis` instead.', name: 'global' },
+          { message: 'Use `globalThis` instead.', name: 'self' },
+        ],
         'no-restricted-properties': [
           'error',
           { message: 'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.', property: '__proto__' },
@@ -136,13 +139,16 @@ export function javascript(options: OptionsJavascript): FlatESLintConfigItemExte
         'prefer-spread': 'error',
         'prefer-template': 'error',
         'require-await': 'error',
-        'sort-imports': ['error', {
-          allowSeparatedGroups: false,
-          ignoreCase: false,
-          ignoreDeclarationSort: true,
-          ignoreMemberSort: false,
-          memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-        }],
+        'sort-imports': [
+          'error',
+          {
+            allowSeparatedGroups: false,
+            ignoreCase: false,
+            ignoreDeclarationSort: true,
+            ignoreMemberSort: false,
+            memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+          },
+        ],
         'symbol-description': 'error',
         'unicode-bom': ['error', 'never'],
         'use-isnan': ['error', { enforceForIndexOf: true, enforceForSwitchCase: true }],

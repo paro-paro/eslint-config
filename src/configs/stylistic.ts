@@ -1,9 +1,10 @@
-import type { FlatESLintConfigItemExtended, OptionsStylistic } from '../types'
+import type { FlatESLintConfigItemExtended, StylisticOptions } from '../types'
 
-export function stylistic(files: string[], options: OptionsStylistic): FlatESLintConfigItemExtended[] {
+/* eslint-disable perfectionist/sort-objects */
+export function stylistic(files: string[], options: StylisticOptions): FlatESLintConfigItemExtended[] {
   const {
-    indent = 2,
     jsx = true,
+    indent = 2,
     quotes = 'single',
   } = options
 
@@ -11,16 +12,14 @@ export function stylistic(files: string[], options: OptionsStylistic): FlatESLin
     {
       files,
       name: 'config:stylistic',
-      rules: {
-        /* stylistic */
-        '@stylistic/array-bracket-spacing': ['error', 'never'],
 
+      /* eslint-enable perfectionist/sort-objects */
+      rules: {
+        '@stylistic/array-bracket-spacing': ['error', 'never'],
         '@stylistic/arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
         '@stylistic/arrow-spacing': ['error', { after: true, before: true }],
         '@stylistic/block-spacing': ['error', 'always'],
-
         '@stylistic/brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
-
         '@stylistic/comma-dangle': ['error', 'always-multiline'],
         '@stylistic/comma-spacing': ['error', { after: true, before: false }],
         '@stylistic/comma-style': ['error', 'last'],
@@ -118,54 +117,49 @@ export function stylistic(files: string[], options: OptionsStylistic): FlatESLin
         '@stylistic/wrap-iife': ['error', 'any', { functionPrototypeMethods: true }],
         '@stylistic/yield-star-spacing': ['error', 'both'],
 
-        /* antfu */
         'antfu/consistent-list-newline': 'error',
         'antfu/if-newline': 'error',
         'antfu/top-level-function': 'error',
 
-        /* eslint */
         'curly': ['error', 'multi-or-nest', 'consistent'],
 
-        /* import */
         'import/newline-after-import': ['error', { considerComments: true, count: 1 }],
 
-        ...jsx
-          ? {
-              '@stylistic/jsx-closing-bracket-location': 'error',
-              '@stylistic/jsx-closing-tag-location': 'error',
-              '@stylistic/jsx-curly-brace-presence': ['error', { propElementValues: 'always' }],
-              '@stylistic/jsx-curly-newline': 'error',
-              '@stylistic/jsx-curly-spacing': ['error', 'never'],
-              '@stylistic/jsx-equals-spacing': 'error',
-              '@stylistic/jsx-first-prop-new-line': 'error',
-              '@stylistic/jsx-indent': ['error', indent, { checkAttributes: true, indentLogicalExpressions: true }],
-              '@stylistic/jsx-indent-props': ['error', indent],
-              '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
-              '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
-              '@stylistic/jsx-quotes': 'error',
-              '@stylistic/jsx-tag-spacing': [
-                'error',
-                {
-                  afterOpening: 'never',
-                  beforeClosing: 'never',
-                  beforeSelfClosing: 'always',
-                  closingSlash: 'never',
-                },
-              ],
-              '@stylistic/jsx-wrap-multilines': [
-                'error',
-                {
-                  arrow: 'parens-new-line',
-                  assignment: 'parens-new-line',
-                  condition: 'parens-new-line',
-                  declaration: 'parens-new-line',
-                  logical: 'parens-new-line',
-                  prop: 'parens-new-line',
-                  return: 'parens-new-line',
-                },
-              ],
-            }
-          : {},
+        ...jsx && {
+          '@stylistic/jsx-closing-bracket-location': 'error',
+          '@stylistic/jsx-closing-tag-location': 'error',
+          '@stylistic/jsx-curly-brace-presence': ['error', { propElementValues: 'always' }],
+          '@stylistic/jsx-curly-newline': 'error',
+          '@stylistic/jsx-curly-spacing': ['error', 'never'],
+          '@stylistic/jsx-equals-spacing': 'error',
+          '@stylistic/jsx-first-prop-new-line': 'error',
+          '@stylistic/jsx-indent': ['error', indent, { checkAttributes: true, indentLogicalExpressions: true }],
+          '@stylistic/jsx-indent-props': ['error', indent],
+          '@stylistic/jsx-max-props-per-line': ['error', { maximum: 1, when: 'multiline' }],
+          '@stylistic/jsx-one-expression-per-line': ['error', { allow: 'single-child' }],
+          '@stylistic/jsx-quotes': 'error',
+          '@stylistic/jsx-tag-spacing': [
+            'error',
+            {
+              afterOpening: 'never',
+              beforeClosing: 'never',
+              beforeSelfClosing: 'always',
+              closingSlash: 'never',
+            },
+          ],
+          '@stylistic/jsx-wrap-multilines': [
+            'error',
+            {
+              arrow: 'parens-new-line',
+              assignment: 'parens-new-line',
+              condition: 'parens-new-line',
+              declaration: 'parens-new-line',
+              logical: 'parens-new-line',
+              prop: 'parens-new-line',
+              return: 'parens-new-line',
+            },
+          ],
+        },
       },
     },
   ]

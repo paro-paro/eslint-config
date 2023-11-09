@@ -1,10 +1,6 @@
-import type { FlatESLintConfigItemExtended, OptionsComments } from '../types'
+import type { FlatESLintConfigItemExtended } from '../types'
 
-export function comments(options: OptionsComments): FlatESLintConfigItemExtended[] {
-  const {
-    files,
-  } = options
-
+export function comments(files: string[]): FlatESLintConfigItemExtended[] {
   return [
     {
       files,

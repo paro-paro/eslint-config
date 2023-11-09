@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@paro-paro/eslint-config.svg?color=a1b858)](https://npmjs.com/package/@paro-paro/eslint-config)
 
-ESLint flat config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, Markdown.
+ESLint flat config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, JSDoc, Markdown.
 
 Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.com/antfu/eslint-config) 
 
@@ -62,7 +62,7 @@ Make sure you read the [eslint flat config documentation](https://eslint.org/doc
 import { paroparo } from '@paro-paro/eslint-config'
 
 export default paroparo(
-  { 
+  {
     // configuration options for paroparo preset (see below)
   },
 
@@ -82,16 +82,16 @@ export default paroparo(
       'vue/no-unused-refs': 'warn',
     },
   },
-  
+
   // ...
 )
 ```
 
 ### VS Code
 
-```jsonc
+```json
 {
-  "eslint.enable": true,
+  "prettier.enable": false, // disable prettier
   "eslint.experimental.useFlatConfig": true,
   "eslint.validate": [
     "javascript",
@@ -103,16 +103,18 @@ export default paroparo(
     "jsonc",
     "yaml",
     "markdown"
-  ],
-  
-  // editor auto-fix
+  ]
+}
+```
+
+For auto-fix:
+
+```json
+{
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.organizeImports": false
-  },
-
-  // disable prettier
-  "prettier.enable": false
+  }
 }
 ```
 
@@ -128,12 +130,13 @@ interface ConfigOptions {
   vue?: boolean
   json?: boolean
   yaml?: boolean
+  jsdoc?: boolean
   markdown?: boolean
-  stylistic?: boolean
   perfectionist?: boolean
-  extendIgnores?: ExtendIgnores
+  stylistic?: boolean
   tsOptions?: TsOptions
   stylisticOptions?: StylisticOptions
+  extendIgnores?: ExtendIgnores
 }
 ```
 
@@ -164,6 +167,7 @@ interface ConfigOptions {
 | [eslint-plugin-antfu](https://github.com/antfu/eslint-plugin-antfu)                         | `antfu/*` |
 | [eslint-plugin-eslint-comments](https://mysticatea.github.io/eslint-plugin-eslint-comments) | `eslint-comments/*` |
 | [eslint-plugin-i](https://github.com/un-es/eslint-plugin-i)                                 | `import/*` |
+| [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc)                         | `jsdoc/*` |
 | [eslint-plugin-jsonc](https://github.com/ota-meshi/eslint-plugin-jsonc)                     | `jsonc/*` |
 | [eslint-plugin-markdown](https://github.com/eslint/eslint-plugin-markdown)                  | - |
 | [eslint-plugin-n](https://github.com/eslint-community/eslint-plugin-n )                     | `node/*` |
@@ -171,7 +175,7 @@ interface ConfigOptions {
 | [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)              | `unicorn/*` |
 | [eslint-plugin-unused-imports](https://github.com/sweepline/eslint-plugin-unused-imports)   | `unused-imports/*` |
 | [eslint-plugin-vue](https://eslint.vuejs.org)                                               | `vue/*` |
-| [eslint-plugin-yml](https://github.com/ota-meshi/eslint-plugin-yml)                         | `yml/*` |
+| [eslint-plugin-yml](https://github.com/ota-meshi/eslint-plugin-yml)                         | `yaml/*` |
 
 ## Wiki
 

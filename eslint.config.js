@@ -1,9 +1,8 @@
-// @ts-check
 import { paroparo } from './dist/index.js'
 
 export default paroparo(
   {
-    perfectionist: true,
+    vue: true,
   },
   {
     files: ['src/configs/*.ts'],
