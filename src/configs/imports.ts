@@ -1,13 +1,24 @@
-import type { FlatESLintConfigItemExtended } from '../types'
+/* eslint perfectionist/sort-objects: error */
+import type { Context } from '../setup'
+import type { FlatConfigItem } from '../types'
 
-export function imports(files: string[]): FlatESLintConfigItemExtended[] {
+/* eslint-disable perfectionist/sort-objects */
+export function imports(ctx: Context): FlatConfigItem[] {
+  const {
+    files,
+    enableTs,
+    enableStylistic,
+  } = ctx
+
   return [
     {
       files,
-      name: 'config:imports',
-      rules: {
-        'antfu/no-import-node-modules-by-path': 'error',
+      name: enableTs
+        ? 'config:rules:typescript:import'
+        : 'config:rules:javascript:import',
 
+      /* eslint-enable perfectionist/sort-objects */
+      rules: {
         'import/first': 'error',
         'import/no-duplicates': 'error',
         'import/no-mutable-exports': 'error',
@@ -16,16 +27,9 @@ export function imports(files: string[]): FlatESLintConfigItemExtended[] {
         'import/no-webpack-loader-syntax': 'error',
         'import/order': 'error',
 
-        'unused-imports/no-unused-imports': 'error',
-        'unused-imports/no-unused-vars': [
-          'error',
-          {
-            args: 'after-used',
-            argsIgnorePattern: '^_',
-            vars: 'all',
-            varsIgnorePattern: '^_',
-          },
-        ],
+        ...enableStylistic && {
+          'import/newline-after-import': ['error', { considerComments: true, count: 1 }],
+        },
       },
     },
   ]

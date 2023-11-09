@@ -1,10 +1,20 @@
-import type { FlatESLintConfigItemExtended } from '../types'
+/* eslint perfectionist/sort-objects: error */
+import type { Context } from '../setup'
+import type { FlatConfigItem } from '../types'
 
-export function unicorn(files: string[]): FlatESLintConfigItemExtended[] {
+/* eslint-disable perfectionist/sort-objects */
+export function unicorn(ctx: Context): FlatConfigItem[] {
+  const {
+    files,
+    enableTs,
+  } = ctx
+
   return [
     {
       files,
-      name: 'config:unicorn',
+      name: enableTs ? 'config:rules:typescript:unicorn' : 'config:rules:javascript:unicorn',
+
+      /* eslint-enable perfectionist/sort-objects */
       rules: {
         'unicorn/better-regex': 'error',
         'unicorn/catch-error-name': 'error',

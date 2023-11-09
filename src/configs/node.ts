@@ -1,10 +1,22 @@
-import type { FlatESLintConfigItemExtended } from '../types'
+/* eslint perfectionist/sort-objects: error */
+import type { Context } from '../setup'
+import type { FlatConfigItem } from '../types'
 
-export function node(files: string[]): FlatESLintConfigItemExtended[] {
+/* eslint-disable perfectionist/sort-objects */
+export function node(ctx: Context): FlatConfigItem[] {
+  const {
+    files,
+    enableTs,
+  } = ctx
+
   return [
     {
       files,
-      name: 'config:node',
+      name: enableTs
+        ? 'config:rules:typescript:node'
+        : 'config:rules:javascript:node',
+
+      /* eslint-enable perfectionist/sort-objects */
       rules: {
         'node/handle-callback-err': ['error', '^(err|error)$'],
         'node/no-deprecated-api': 'error',

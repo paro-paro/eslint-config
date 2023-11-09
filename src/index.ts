@@ -1,2 +1,2 @@
 export { paroparo } from './setup'
-export type { ConfigOptions } from './types'
+export type * from './types'

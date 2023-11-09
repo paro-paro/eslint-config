@@ -1,34 +1,23 @@
+/* eslint perfectionist/sort-objects: error */
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs'
-import { parserJsonc } from '../parsers'
-import { pluginJsonc } from '../plugins'
-import type { FlatESLintConfigItemExtended } from '../types'
+import type { Context } from '../setup'
+import type { FlatConfigItem } from '../types'
 
-interface OptionsJson {
-  indent?: number | 'tab'
-  enableStylistic: boolean
-}
+export function jsonc(ctx: Context): FlatConfigItem[] {
+  const {
+    enableStylistic,
+    stylisticOptions,
+  } = ctx
 
-/* eslint-disable perfectionist/sort-objects */
-export function json(options: OptionsJson): FlatESLintConfigItemExtended[] {
   const {
     indent = 2,
-    enableStylistic,
-  } = options
+  } = stylisticOptions
 
   return [
     {
       files: [GLOB_JSON, GLOB_JSONC, GLOB_JSON5],
-      name: 'config:json',
+      name: 'config:rules:jsonc',
 
-      languageOptions: {
-        parser: parserJsonc,
-      },
-
-      plugins: {
-        jsonc: pluginJsonc,
-      },
-
-      /* eslint-enable perfectionist/sort-objects */
       rules: {
         'jsonc/no-bigint-literals': 'error',
         'jsonc/no-binary-expression': 'error',

@@ -1,10 +1,22 @@
-import type { FlatESLintConfigItemExtended } from '../types'
+/* eslint perfectionist/sort-objects: error */
+import type { Context } from '../setup'
+import type { FlatConfigItem } from '../types'
 
-export function comments(files: string[]): FlatESLintConfigItemExtended[] {
+/* eslint-disable perfectionist/sort-objects */
+export function comments(ctx: Context): FlatConfigItem[] {
+  const {
+    files,
+    enableTs,
+  } = ctx
+
   return [
     {
       files,
-      name: 'config:comments',
+      name: enableTs
+        ? 'config:rules:typescript:eslint-comments'
+        : 'config:rules:javascript:eslint-comments',
+
+      /* eslint-enable perfectionist/sort-objects */
       rules: {
         'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
         'eslint-comments/no-aggregating-enable': 'error',

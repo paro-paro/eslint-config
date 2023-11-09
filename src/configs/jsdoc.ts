@@ -1,10 +1,23 @@
-import type { FlatESLintConfigItemExtended } from '../types'
+/* eslint perfectionist/sort-objects: error */
+import type { Context } from '../setup'
+import type { FlatConfigItem } from '../types'
 
-export function jsdoc(files: string[], enableStylistic: boolean): FlatESLintConfigItemExtended[] {
+/* eslint-disable perfectionist/sort-objects */
+export function jsdoc(ctx: Context): FlatConfigItem[] {
+  const {
+    files,
+    enableTs,
+    enableStylistic,
+  } = ctx
+
   return [
     {
       files,
-      name: 'config:jsdoc',
+      name: enableTs
+        ? 'config:rules:typescript:jsdoc'
+        : 'config:rules:javascript:jsdoc',
+
+      /* eslint-enable perfectionist/sort-objects */
       rules: {
         'jsdoc/check-access': 'warn',
         'jsdoc/check-param-names': 'warn',

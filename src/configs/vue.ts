@@ -1,44 +1,24 @@
+/* eslint perfectionist/sort-objects: error */
 import { GLOB_VUE } from '../globs'
-import { parserTs, parserVue } from '../parsers'
 import { pluginVue } from '../plugins'
-import type { FlatESLintConfigItemExtended } from '../types'
+import type { Context } from '../setup'
+import type { FlatConfigItem } from '../types'
 
-interface OptionsVue {
-  indent?: number | 'tab'
-  enableTs: boolean
-  enableStylistic: boolean
-}
+export function vue(ctx: Context): FlatConfigItem[] {
+  const {
+    enableStylistic,
+    stylisticOptions,
+  } = ctx
 
-/* eslint-disable perfectionist/sort-objects */
-export function vue(options: OptionsVue): FlatESLintConfigItemExtended[] {
   const {
     indent = 2,
-    enableTs,
-    enableStylistic,
-  } = options
+  } = stylisticOptions
 
   return [
     {
       files: [GLOB_VUE],
-      name: 'config:vue',
+      name: 'config:rules:vue',
 
-      languageOptions: {
-        parser: parserVue,
-        parserOptions: {
-          parser: enableTs ? parserTs as any : null,
-          sourceType: 'module',
-          ecmaFeatures: { jsx: true },
-          extraFileExtensions: ['.vue'],
-        },
-      },
-
-      plugins: {
-        vue: pluginVue,
-      },
-
-      processor: pluginVue.processors['.vue'],
-
-      /* eslint-enable perfectionist/sort-objects */
       rules: {
         ...pluginVue.configs.base.rules,
         ...pluginVue.configs['vue3-essential'].rules,
@@ -77,9 +57,6 @@ export function vue(options: OptionsVue): FlatESLintConfigItemExtended[] {
         'vue/require-prop-types': 'off',
         'vue/space-infix-ops': 'error',
         'vue/space-unary-ops': ['error', { nonwords: false, words: true }],
-
-        // eslint-disable-next-line perfectionist/sort-objects
-        'node/prefer-global/process': 'off',
 
         ...enableStylistic && {
           'vue/array-bracket-spacing': ['error', 'never'],

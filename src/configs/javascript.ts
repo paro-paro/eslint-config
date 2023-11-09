@@ -1,21 +1,21 @@
-import type { FlatESLintConfigItemExtended } from '../types'
+/* eslint perfectionist/sort-objects: error */
+import type { Context } from '../setup'
+import type { FlatConfigItem } from '../types'
 
 /* eslint-disable perfectionist/sort-objects */
-export function javascript(files: string[]): FlatESLintConfigItemExtended[] {
+export function javascript(ctx: Context): FlatConfigItem[] {
+  const {
+    files,
+    enableTs,
+    enableStylistic,
+  } = ctx
+
   return [
     {
       files,
-      name: 'config:javascript',
-
-      languageOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        parserOptions: {
-          parser: 'espree',
-          sourceType: 'module',
-          ecmaFeatures: { jsx: true },
-        },
-      },
+      name: enableTs
+        ? 'config:rules:typescript'
+        : 'config:rules:javascript',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {
@@ -26,6 +26,7 @@ export function javascript(files: string[]): FlatESLintConfigItemExtended[] {
         'default-case-last': 'error',
         'dot-notation': ['error', { allowKeywords: true }],
         'eqeqeq': ['error', 'smart'],
+        'getter-return': 'error',
         'new-cap': ['error', { capIsNew: false, newIsCap: true, properties: true }],
         'no-alert': 'error',
         'no-array-constructor': 'error',
@@ -35,7 +36,7 @@ export function javascript(files: string[]): FlatESLintConfigItemExtended[] {
         'no-class-assign': 'error',
         'no-compare-neg-zero': 'error',
         'no-cond-assign': ['error', 'always'],
-        'no-console': ['warn', { allow: ['warn', 'error'] }],
+        'no-console': ['error', { allow: ['warn', 'error'] }],
         'no-const-assign': 'error',
         'no-control-regex': 'error',
         'no-debugger': 'error',
@@ -102,6 +103,7 @@ export function javascript(files: string[]): FlatESLintConfigItemExtended[] {
         'no-self-assign': ['error', { props: true }],
         'no-self-compare': 'error',
         'no-sequences': 'error',
+        'no-setter-return': 'error',
         'no-shadow-restricted-names': 'error',
         'no-sparse-arrays': 'error',
         'no-template-curly-in-string': 'error',
@@ -117,7 +119,6 @@ export function javascript(files: string[]): FlatESLintConfigItemExtended[] {
         'no-unsafe-finally': 'error',
         'no-unsafe-negation': 'error',
         'no-unused-expressions': ['error', { allowShortCircuit: true, allowTaggedTemplates: true, allowTernary: true }],
-        'no-unused-vars': 'off',
         'no-use-before-define': ['error', { classes: false, functions: false, variables: true }],
         'no-useless-backreference': 'error',
         'no-useless-call': 'error',
@@ -131,7 +132,7 @@ export function javascript(files: string[]): FlatESLintConfigItemExtended[] {
         'object-shorthand': ['error', 'always', { avoidQuotes: true, ignoreConstructors: false }],
         'one-var': ['error', { initialized: 'never' }],
         'prefer-arrow-callback': ['error', { allowNamedFunctions: false, allowUnboundThis: true }],
-        'prefer-const': ['error', { destructuring: 'all', ignoreReadBeforeAssign: true }],
+        'prefer-const': ['error'],
         'prefer-exponentiation-operator': 'error',
         'prefer-promise-reject-errors': 'error',
         'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
@@ -155,6 +156,10 @@ export function javascript(files: string[]): FlatESLintConfigItemExtended[] {
         'valid-typeof': ['error', { requireStringLiterals: true }],
         'vars-on-top': 'error',
         'yoda': ['error', 'never'],
+
+        ...enableStylistic && {
+          curly: ['error', 'multi-or-nest', 'consistent'],
+        },
       },
     },
   ]

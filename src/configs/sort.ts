@@ -1,8 +1,8 @@
-import type { FlatESLintConfigItemExtended } from '../types'
+import type { FlatConfigItem } from '../types'
 
-export const sortPackageJson: FlatESLintConfigItemExtended = {
+export const sortPackageJson: FlatConfigItem = {
   files: ['**/package.json'],
-  name: 'config:overrides:sort:package.json',
+  name: 'config:sort:package.json',
   rules: {
     'jsonc/sort-array-values': [
       'error',
@@ -86,9 +86,9 @@ export const sortPackageJson: FlatESLintConfigItemExtended = {
   },
 }
 
-export const sortTsConfig: FlatESLintConfigItemExtended = {
+export const sortTsConfig: FlatConfigItem = {
   files: ['**/tsconfig.json', '**/tsconfig.*.json'],
-  name: 'config:overrides:sort:tsconfig.json',
+  name: 'config:sort:tsconfig.json',
   rules: {
     'jsonc/sort-keys': [
       'error',

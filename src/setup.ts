@@ -1,70 +1,91 @@
 import { GLOB_JS, GLOB_TS } from './globs'
-import { jsdoc, json, markdown, overrides, stylistic, typescript, vue, yaml } from './configs'
-import { autoDetectTs, autoDetectVue, getBaseConfig } from './utils'
-import type { ConfigOptions, FlatESLintConfigItem } from './types'
+import { autoDetectTs, autoDetectVue } from './utils'
+import { getPreset } from './preset'
+import type {
+  ConfigOptions,
+  FlatConfigItem,
+  GitIgnoreOptions,
+  IgnoresOptions,
+  StylisticOptions,
+  TsOptions,
+} from './types'
 
-export function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigItem[]): FlatESLintConfigItem[] {
+export interface Context {
+  files: string[]
+  enableTs: boolean
+  enableVue: boolean
+  enableJson: boolean
+  enableYml: boolean
+  enableMarkdown: boolean
+  enableJsdoc: boolean
+  enableStylistic: boolean
+  enablePerfectionist: boolean
+  enableGlobals: boolean
+  enableRenameRules: boolean
+  gitignoreOptions: false | GitIgnoreOptions
+  ignoresOptions: false | IgnoresOptions
+  tsOptions: TsOptions
+  stylisticOptions: StylisticOptions
+}
+
+export function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatConfigItem[]): FlatConfigItem[] {
   const {
     ts: enableTs = autoDetectTs(),
     vue: enableVue = autoDetectVue(),
     json: enableJson = true,
-    yaml: enableYaml = true,
-    jsdoc: enableJsdoc = true,
+    yml: enableYml = true,
     markdown: enableMarkdown = true,
-    perfectionist: enablePerfectionist = true,
+    jsdoc: enableJsdoc = true,
     stylistic: enableStylistic = true,
+    perfectionist: enablePerfectionist = true,
+    globals: enableGlobals = true,
+    renameRules: enableRenameRules = true,
   } = options
 
-  const files = enableTs ? [...GLOB_TS] : [...GLOB_JS]
-  const extendIgnores = options.extendIgnores ?? []
+  const ctx: Context = {
+    files:
+      enableTs
+        ? [...GLOB_TS]
+        : [...GLOB_JS],
 
-  const config = getBaseConfig({
-    files,
     enableTs,
+    enableVue,
+    enableJson,
+    enableYml,
+    enableMarkdown,
     enableJsdoc,
-    enablePerfectionist,
     enableStylistic,
-    extendIgnores,
-  })
+    enablePerfectionist,
+    enableGlobals,
+    enableRenameRules,
 
-  const tsOptions = !enableTs ? {} : options.tsOptions ?? {}
-  const stylisticOptions = !enableStylistic ? {} : options.stylisticOptions ?? {}
+    gitignoreOptions:
+      options.gitignore === false
+        ? false
+        : typeof options.gitignore === 'object'
+          ? options.gitignore
+          : {},
 
-  if (enableJsdoc)
-    config.push(...jsdoc(files, enableStylistic))
+    ignoresOptions:
+      options.ignores === false
+        ? false
+        : typeof options.ignores === 'object'
+          ? options.ignores
+          : {},
 
-  if (enableStylistic)
-    config.push(...stylistic(files, stylisticOptions))
+    tsOptions:
+      !enableTs
+        ? {}
+        : options.tsOptions ?? {},
 
-  if (enableTs)
-    config.push(...typescript(files, tsOptions))
-
-  if (enableVue) {
-    config.push(...vue({
-      enableTs,
-      enableStylistic,
-      indent: stylisticOptions.indent,
-    }))
+    stylisticOptions:
+      !enableStylistic
+        ? {}
+        : options.stylisticOptions ?? {},
   }
 
-  if (enableJson) {
-    config.push(...json({
-      enableStylistic,
-      indent: stylisticOptions.indent,
-    }))
-  }
+  const preset = getPreset(ctx)
+  preset.push(...userConfigs)
 
-  if (enableYaml) {
-    config.push(...yaml({
-      enableStylistic,
-      indent: stylisticOptions.indent,
-      quotes: stylisticOptions.quotes,
-    }))
-  }
-
-  if (enableMarkdown)
-    config.push(...markdown())
-
-  config.push(...overrides(enableTs, enableJson), ...userConfigs)
-  return config
+  return preset
 }
