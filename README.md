@@ -18,7 +18,7 @@ Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.c
 
 * First class TypeScript support.
 
-* Vue 3 auto-detection.
+* Vue auto-detection.
 
 * Powered by [@stylistic](https://eslint.style/) and [more](https://github.com/paro-paro/eslint-config#supported-plugins).
 
