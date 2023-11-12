@@ -175,7 +175,7 @@ interface ConfigOptions {
 
 * The [`eslint-config-flat-gitignore`](https://github.com/antfu/eslint-config-flat-gitignore) package is also supported through the `gitignore` option.
 
-* Use the `stylisticOptions` object to customize identation and quotes style.
+* Use the `stylisticOptions` object to customize quotes style, semi and indentation.
 
 * To enable type aware linting use the `tsOptions` object. The preset does not include any of these rules by default. Check [docs](https://typescript-eslint.io/linting/typed-linting/) for details and caveats.
 
