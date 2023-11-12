@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@paro-paro/eslint-config.svg?color=a1b858)](https://npmjs.com/package/@paro-paro/eslint-config)
 
-ESLint flat config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, JSDoc, Markdown and more.
+ESLint flat config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, Markdown, JSDoc and more.
 
 Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.com/antfu/eslint-config) 
 
@@ -146,6 +146,7 @@ interface ConfigOptions {
   jsdoc?: boolean
   stylistic?: boolean
   perfectionist?: boolean
+  sort?: boolean
   globals?: boolean
   renameRules?: boolean
   gitignore?: boolean | GitIgnoreOptions
@@ -163,13 +164,15 @@ interface ConfigOptions {
 
 * Rules for `vue` will be automatically enabled if `vue`, `nuxt` or `vitepress` packages are locally installed.
 
-* Rules for `json`, `yml`, `jsdoc`, `markdown` and `stylistic` are enabled by default.
+* Rules for `json`, `yml`, `markdown`, `jsdoc` and `stylistic` are enabled by default.
 
 * You can explicitly `enable/disable` them by setting the appropiate option to `true/false`.
 
-* Predefined globals can also be disabled by setting the `globals` option to `false`.
-
 * By default, the `perfectionist` plugin is installed but no rules are enabled.
+
+* Sorting of `package.json` and `tsconfig.json` keys can be disabled using the `sort` option.
+
+* Predefined globals can also be disabled using the `globals` option.
 
 * Use the `ignores` option if you need to extend or override the predefined set of [global ignores](https://github.com/paro-paro/eslint-config/blob/main/src/globs.ts).
 
