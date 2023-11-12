@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@paro-paro/eslint-config.svg?color=a1b858)](https://npmjs.com/package/@paro-paro/eslint-config)
 
-ESLint flat config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yml, JSDoc, Markdown and more.
+ESLint flat config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, JSDoc, Markdown and more.
 
 Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.com/antfu/eslint-config) 
 
