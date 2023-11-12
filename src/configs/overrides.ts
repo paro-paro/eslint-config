@@ -9,11 +9,11 @@ import {
   GLOB_TEST_TS,
 } from '../globs'
 import type { Context } from '../setup'
-import type { FlatConfigItem } from '../types'
+import type { FlatESLintConfigItemExtend } from '../types'
 import { sortPackageJson, sortTsConfig } from './sort'
 
 /* eslint-disable perfectionist/sort-objects */
-export function overrides(ctx: Context): FlatConfigItem[] {
+export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     enableTs = true,
     enableJson = true,
@@ -22,12 +22,12 @@ export function overrides(ctx: Context): FlatConfigItem[] {
     enableRenameRules = true,
   } = ctx
 
-  const overrides: FlatConfigItem[] = []
+  const overrides: FlatESLintConfigItemExtend[] = []
   const prefixTs = enableRenameRules ? 'ts' : '@typescript-eslint'
   const prefixStylistic = enableRenameRules ? 'stylistic' : '@stylistic'
 
   /* eslint-enable perfectionist/sort-objects */
-  const tests: FlatConfigItem = {
+  const tests: FlatESLintConfigItemExtend = {
     files: enableTs
       ? [...GLOB_TEST_TS]
       : [...GLOB_TEST_JS],
@@ -41,7 +41,7 @@ export function overrides(ctx: Context): FlatConfigItem[] {
     },
   }
 
-  const scripts: FlatConfigItem = {
+  const scripts: FlatESLintConfigItemExtend = {
     files: enableTs
       ? [...GLOB_SCRIPTS_TS]
       : [...GLOB_SCRIPTS_JS],
@@ -55,7 +55,7 @@ export function overrides(ctx: Context): FlatConfigItem[] {
     },
   }
 
-  const dts: FlatConfigItem = {
+  const dts: FlatESLintConfigItemExtend = {
     files: [...GLOB_DTS],
     name: 'config:overrides:typescript:dts',
     rules: {
@@ -65,7 +65,7 @@ export function overrides(ctx: Context): FlatConfigItem[] {
     },
   }
 
-  const markdownCode: FlatConfigItem = {
+  const markdownCode: FlatESLintConfigItemExtend = {
     files: enableTs
       ? [...GLOB_MD_CODE_TS]
       : [...GLOB_MD_CODE_JS],

@@ -2,9 +2,9 @@
 import { GLOB_VUE } from '../globs'
 import { pluginVue } from '../plugins'
 import type { Context } from '../setup'
-import type { FlatConfigItem } from '../types'
+import type { FlatESLintConfigItemExtend } from '../types'
 
-export function vue(ctx: Context): FlatConfigItem[] {
+export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     enableStylistic,
     stylisticOptions,

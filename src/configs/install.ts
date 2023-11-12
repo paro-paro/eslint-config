@@ -19,9 +19,9 @@ import {
   pluginYml,
 } from '../plugins'
 import type { Context } from '../setup'
-import type { FlatConfigItem } from '../types'
+import type { FlatESLintConfigItemExtend } from '../types'
 
-export function install(ctx: Context): FlatConfigItem[] {
+export function install(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     files,
     enableTs,
@@ -37,7 +37,7 @@ export function install(ctx: Context): FlatConfigItem[] {
     tsOptions,
   } = ctx
 
-  const install: FlatConfigItem[] = []
+  const install: FlatESLintConfigItemExtend[] = []
   const tsconfigPath = tsOptions.tsconfigPath
 
   const linterOptions = {
@@ -87,7 +87,7 @@ export function install(ctx: Context): FlatConfigItem[] {
     },
   }
 
-  const js: FlatConfigItem = {
+  const js: FlatESLintConfigItemExtend = {
     files,
     name: 'config:install:javascript',
     ...plugins,
@@ -105,7 +105,7 @@ export function install(ctx: Context): FlatConfigItem[] {
     },
   }
 
-  const ts: FlatConfigItem = {
+  const ts: FlatESLintConfigItemExtend = {
     files,
     name: 'config:install:typescript',
     ...plugins,
@@ -129,7 +129,7 @@ export function install(ctx: Context): FlatConfigItem[] {
     },
   }
 
-  const vue: FlatConfigItem = {
+  const vue: FlatESLintConfigItemExtend = {
     files: [GLOB_VUE],
     name: 'config:install:vue',
     processor: pluginVue.processors['.vue'],
@@ -153,7 +153,7 @@ export function install(ctx: Context): FlatConfigItem[] {
     },
   }
 
-  const json: FlatConfigItem = {
+  const json: FlatESLintConfigItemExtend = {
     files: [GLOB_JSON, GLOB_JSONC, GLOB_JSON5],
     name: 'config:install:jsonc',
     plugins: {
@@ -164,7 +164,7 @@ export function install(ctx: Context): FlatConfigItem[] {
     },
   }
 
-  const yml: FlatConfigItem = {
+  const yml: FlatESLintConfigItemExtend = {
     files: [GLOB_YML],
     name: 'config:install:yml',
     plugins: {
@@ -175,7 +175,7 @@ export function install(ctx: Context): FlatConfigItem[] {
     },
   }
 
-  const markdown: FlatConfigItem = {
+  const markdown: FlatESLintConfigItemExtend = {
     files: [GLOB_MD],
     name: 'config:install:markdown',
     processor: 'markdown/markdown',

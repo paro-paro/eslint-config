@@ -18,9 +18,9 @@ import {
   yml,
 } from './configs'
 import type { Context } from './setup'
-import type { FlatConfigItem } from './types'
+import type { FlatESLintConfigItemExtend } from './types'
 
-export function getPreset(ctx: Context): FlatConfigItem[] {
+export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     enableTs,
     enableVue,
@@ -32,7 +32,7 @@ export function getPreset(ctx: Context): FlatConfigItem[] {
     ignoresOptions,
   } = ctx
 
-  const preset: FlatConfigItem[] = []
+  const preset: FlatESLintConfigItemExtend[] = []
 
   if (gitignoreOptions)
     preset.push(gitignore(gitignoreOptions))

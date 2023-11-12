@@ -1,9 +1,9 @@
 /* eslint perfectionist/sort-objects: error */
 import type { Context } from '../setup'
-import type { FlatConfigItem } from '../types'
+import type { FlatESLintConfigItemExtend } from '../types'
 
 /* eslint-disable perfectionist/sort-objects */
-export function comments(ctx: Context): FlatConfigItem[] {
+export function comments(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     files,
     enableTs,

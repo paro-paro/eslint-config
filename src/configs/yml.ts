@@ -1,9 +1,9 @@
 /* eslint perfectionist/sort-objects: error */
 import { GLOB_YML } from '../globs'
 import type { Context } from '../setup'
-import type { FlatConfigItem } from '../types'
+import type { FlatESLintConfigItemExtend } from '../types'
 
-export function yml(ctx: Context): FlatConfigItem[] {
+export function yml(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     enableStylistic,
     stylisticOptions,

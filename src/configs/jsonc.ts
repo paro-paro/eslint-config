@@ -1,9 +1,9 @@
 /* eslint perfectionist/sort-objects: error */
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs'
 import type { Context } from '../setup'
-import type { FlatConfigItem } from '../types'
+import type { FlatESLintConfigItemExtend } from '../types'
 
-export function jsonc(ctx: Context): FlatConfigItem[] {
+export function jsonc(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     enableStylistic,
     stylisticOptions,

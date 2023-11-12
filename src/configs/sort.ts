@@ -1,6 +1,6 @@
-import type { FlatConfigItem } from '../types'
+import type { FlatESLintConfigItemExtend } from '../types'
 
-export const sortPackageJson: FlatConfigItem = {
+export const sortPackageJson: FlatESLintConfigItemExtend = {
   files: ['**/package.json'],
   name: 'config:sort:package.json',
   rules: {
@@ -86,7 +86,7 @@ export const sortPackageJson: FlatConfigItem = {
   },
 }
 
-export const sortTsConfig: FlatConfigItem = {
+export const sortTsConfig: FlatESLintConfigItemExtend = {
   files: ['**/tsconfig.json', '**/tsconfig.*.json'],
   name: 'config:sort:tsconfig.json',
   rules: {

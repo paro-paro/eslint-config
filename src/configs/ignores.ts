@@ -1,7 +1,7 @@
 import { GLOB_EXCLUDE } from '../globs'
-import type { FlatConfigItem, IgnoresOptions } from '../types'
+import type { FlatESLintConfigItem, IgnoresOptions } from '../types'
 
-export function ignores(options: IgnoresOptions): FlatConfigItem {
+export function ignores(options: IgnoresOptions): FlatESLintConfigItem {
   const {
     globs = [],
     override = false,

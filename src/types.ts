@@ -1,6 +1,6 @@
 import type { FlatESLintConfigItem } from 'eslint-define-config'
 
-interface FlatConfigItem extends FlatESLintConfigItem {
+interface FlatESLintConfigItemExtend extends FlatESLintConfigItem {
   /**
    * Custom name for each flat config object.
    */
@@ -190,7 +190,7 @@ interface StylisticOptions {
 
 export type {
   FlatESLintConfigItem,
-  FlatConfigItem,
+  FlatESLintConfigItemExtend,
   ConfigOptions,
   GitIgnoreOptions,
   IgnoresOptions,
