@@ -216,6 +216,14 @@ Also, there is a great [utility package](https://www.npmjs.com/package/eslint-fl
 
 All credit to his outstanding and inspirational work.
 
+## Check also
+
+* [@paro-paro/dotfiles](https://github.com/paro-paro/dotfiles) - My dotfiles.
+
+* [@paro-paro/vscode](https://github.com/paro-paro/vscode) - My VS Code setup.
+
+* [@paro-paro/paro-paro-solarized-dark](https://github.com/paro-paro/paro-paro-solarized-dark) - My own VS Code Dark Theme.
+
 ## License
 
 [MIT](./LICENSE) License &copy; 2023-PRESENT [Antonio Parody](https://github.com/paro-paro)
