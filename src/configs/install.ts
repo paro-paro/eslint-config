@@ -189,6 +189,9 @@ export function install(ctx: Context): FlatConfigItem[] {
   else
     install.push(js)
 
+  if (enableVue)
+    install.push(vue)
+
   if (enableJson)
     install.push(json)
 
@@ -197,9 +200,6 @@ export function install(ctx: Context): FlatConfigItem[] {
 
   if (enableMarkdown)
     install.push(markdown)
-
-  if (enableVue)
-    install.push(vue)
 
   return install
 }

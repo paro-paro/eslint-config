@@ -1,4 +1,4 @@
-import { GLOB_JS, GLOB_TS } from './globs'
+import { GLOB_JS, GLOB_TS, GLOB_VUE } from './globs'
 import { autoDetectTs, autoDetectVue } from './utils'
 import { getPreset } from './preset'
 import type {
@@ -45,8 +45,8 @@ export function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatConfig
   const ctx: Context = {
     files:
       enableTs
-        ? [...GLOB_TS]
-        : [...GLOB_JS],
+        ? enableVue ? [...GLOB_TS, GLOB_VUE] : [...GLOB_TS]
+        : enableVue ? [...GLOB_JS, GLOB_VUE] : [...GLOB_JS],
 
     enableTs,
     enableVue,

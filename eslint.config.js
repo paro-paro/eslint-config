@@ -28,11 +28,19 @@ export default paroparo(
     },
   },
 
-  {
-    files: ['**/*.js'],
-    ignores: ['eslint.config.js'],
-    rules: {
-      'perfectionist/sort-objects': 'error',
-    },
-  },
+  // {
+  //   files: ['**/*.js'],
+  //   ignores: ['eslint.config.js'],
+  //   rules: {
+  //     'perfectionist/sort-objects': 'error',
+  //   },
+  // },
+
+  // {
+  //   files: ['**/*.vue'],
+  //   rules: {
+  //     'no-console': 'warn',
+  //     'perfectionist/sort-objects': 'error',
+  //   },
+  // },
 )

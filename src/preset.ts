@@ -63,14 +63,14 @@ export function getPreset(ctx: Context): FlatConfigItem[] {
   if (enableStylistic)
     preset.push(...stylistic(ctx))
 
+  if (enableVue)
+    preset.push(...vue(ctx))
+
   if (enableJson)
     preset.push(...jsonc(ctx))
 
   if (enableYml)
     preset.push(...yml(ctx))
-
-  if (enableVue)
-    preset.push(...vue(ctx))
 
   preset.push(...overrides(ctx))
 
