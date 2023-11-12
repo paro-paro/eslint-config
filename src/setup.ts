@@ -3,7 +3,7 @@ import { autoDetectTs, autoDetectVue } from './utils'
 import { getPreset } from './preset'
 import type {
   ConfigOptions,
-  FlatConfigItem,
+  FlatESLintConfigItem,
   GitIgnoreOptions,
   IgnoresOptions,
   StylisticOptions,
@@ -28,7 +28,7 @@ export interface Context {
   stylisticOptions: StylisticOptions
 }
 
-export function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatConfigItem[]): FlatConfigItem[] {
+export function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigItem[]): FlatESLintConfigItem[] {
   const {
     ts: enableTs = autoDetectTs(),
     vue: enableVue = autoDetectVue(),
