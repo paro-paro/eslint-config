@@ -173,7 +173,7 @@ interface ConfigOptions {
 
 * Use the `ignores` option if you need to extend or override the predefined set of [global ignores](https://github.com/paro-paro/eslint-config/blob/main/src/globs.ts).
 
-* The [eslint-config-flat-gitignore](https://github.com/antfu/eslint-config-flat-gitignore) package is also supported through the `gitignore` option.
+* [eslint-config-flat-gitignore](https://github.com/antfu/eslint-config-flat-gitignore) package is also supported through the `gitignore` option.
 
 * Use the `stylisticOptions` object to customize quotes style, semi and indentation.
 
