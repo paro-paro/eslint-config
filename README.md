@@ -44,9 +44,9 @@ export default paroparo()
 
 And that's it! :muscle:
 
-**Note:** This setup assumes that you are using `ESM` in your project by setting `type: "module"` in `package.json`.
+**Note:** This setup assumes that you are using ESM in your project by setting `type: "module"` in `package.json`.
 
-Even though is **highly discouraged**, you can use `CommonJS` as well.
+Even though is **highly discouraged**, you can use CommonJS as well.
 
 ```js
 const { paroparo } = require('@paro-paro/eslint-config')
@@ -54,7 +54,7 @@ const { paroparo } = require('@paro-paro/eslint-config')
 module.exports = paroparo()
 ```
 
-**Note:** The default configuration will throw `ts/no-var-requires` and `ts/no-require-imports` errors when using `CommonJS` syntax.
+**Note:** The default configuration will throw `ts/no-var-requires` and `ts/no-require-imports` errors when using CommonJS syntax.
 
 ### Configuration
 

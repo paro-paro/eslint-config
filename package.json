@@ -39,7 +39,7 @@
     "lint:fix": "eslint --fix .",
     "typecheck": "tsc --noEmit",
     "preview": "eslint-flat-config-viewer",
-    "prepare": "simple-git-hooks",
+    "prepare:hooks": "simple-git-hooks",
     "prepublishOnly": "pnpm run build",
     "release": "bumpp && pnpm publish"
   },
