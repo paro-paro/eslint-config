@@ -36,11 +36,11 @@ export default paroparo(
   //   },
   // },
 
-  // {
-  //   files: ['**/*.vue'],
-  //   rules: {
-  //     'no-console': 'warn',
-  //     'perfectionist/sort-objects': 'error',
-  //   },
-  // },
+  {
+    files: ['**/*.vue'],
+    rules: {
+      'no-console': 'warn',
+      'perfectionist/sort-objects': 'error',
+    },
+  },
 )

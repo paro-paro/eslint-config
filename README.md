@@ -54,7 +54,7 @@ const { paroparo } = require('@paro-paro/eslint-config')
 module.exports = paroparo()
 ```
 
-**Note:** The default configuration will throw `typescript/no-var-requires` and `typescript/no-require-imports` errors when using `CommonJS` syntax.
+**Note:** The default configuration will throw `ts/no-var-requires` and `ts/no-require-imports` errors when using `CommonJS` syntax.
 
 ### Configuration
 
