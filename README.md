@@ -10,7 +10,7 @@ Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.c
 
 * One line setup! :rocket:
 
-* ESLint for both linting & formatting (no prettier) :wrench:
+* ESLint for both linting and formatting (no prettier) :wrench:
 
 * Strict, although reasonable, out-of-the-box preset.
 
