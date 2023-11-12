@@ -20,6 +20,7 @@ export interface Context {
   enableJsdoc: boolean
   enableStylistic: boolean
   enablePerfectionist: boolean
+  enableSort: boolean
   enableGlobals: boolean
   enableRenameRules: boolean
   gitignoreOptions: false | GitIgnoreOptions
@@ -38,6 +39,7 @@ export function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLint
     jsdoc: enableJsdoc = true,
     stylistic: enableStylistic = true,
     perfectionist: enablePerfectionist = true,
+    sort: enableSort = true,
     globals: enableGlobals = true,
     renameRules: enableRenameRules = true,
   } = options
@@ -56,6 +58,7 @@ export function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLint
     enableJsdoc,
     enableStylistic,
     enablePerfectionist,
+    enableSort,
     enableGlobals,
     enableRenameRules,
 

@@ -11,6 +11,7 @@ export default paroparo(
     jsdoc: true,
     stylistic: true,
     perfectionist: true,
+    sort: true,
     globals: true,
     renameRules: true,
     gitignore: {
@@ -36,11 +37,11 @@ export default paroparo(
   //   },
   // },
 
-  {
-    files: ['**/*.vue'],
-    rules: {
-      'no-console': 'warn',
-      'perfectionist/sort-objects': 'error',
-    },
-  },
+  // {
+  //   files: ['**/*.vue'],
+  //   rules: {
+  //     'no-console': 'warn',
+  //     'perfectionist/sort-objects': 'error',
+  //   },
+  // },
 )

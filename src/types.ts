@@ -53,6 +53,8 @@ interface ConfigOptions {
   /**
    * Enable or disable stylistic rules.
    *
+   * Applies to all supported languages.
+   *
    * @default true
    */
   stylistic?: boolean
@@ -65,6 +67,15 @@ interface ConfigOptions {
    * @default true
    */
   perfectionist?: boolean
+
+  /**
+   * Enable or disable default sorting of package.json and tsconfig.json keys.
+   *
+   * Only applies if JSON is enabled.
+   *
+   * @default true
+   */
+  sort?: boolean
 
   /**
    * Enable or disable globals.

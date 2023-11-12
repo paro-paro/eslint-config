@@ -19,6 +19,7 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
     enableJson = true,
     enableStylistic = true,
     enableMarkdown = true,
+    enableSort = true,
     enableRenameRules = true,
   } = ctx
 
@@ -130,7 +131,7 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
   if (enableTs)
     overrides.push(dts)
 
-  if (enableJson)
+  if (enableJson && enableSort)
     overrides.push(sortPackageJson, sortTsConfig)
 
   return overrides
