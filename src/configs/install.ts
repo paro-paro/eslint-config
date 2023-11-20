@@ -148,7 +148,7 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
         ...shared,
         ecmaFeatures: { jsx: true },
         parser: enableTs ? parserTs as any : null,
-        vueFeatures: {},
+        // vueFeatures: {},
       },
     },
   }
