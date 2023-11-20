@@ -26,7 +26,6 @@ export function antfu(ctx: Context): FlatESLintConfigItemExtend[] {
           'antfu/import-dedupe': 'error',
           'antfu/named-tuple-spacing': 'error',
           'antfu/no-cjs-exports': 'error',
-          'antfu/no-const-enum': 'error',
           'antfu/no-ts-export-equal': 'error',
         },
 
