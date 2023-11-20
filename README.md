@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@paro-paro/eslint-config.svg?color=a1b858)](https://npmjs.com/package/@paro-paro/eslint-config)
 
-ESLint (flat) config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, Markdown, JSDoc and more.
+ESLint config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, Markdown, JSDoc and more.
 
 Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.com/antfu/eslint-config) 
 
@@ -10,15 +10,17 @@ Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.c
 
 * One line setup! :rocket:
 
-* ESLint for both linting and formatting (no prettier) :wrench:
+* Flat config. No prettier. :no_good:
 
-* Strict, although reasonable, out-of-the-box preset.
+* ESLint for both linting and formatting. :wrench:
 
-* Fully customizable. Easily composable.
+* Strict, although reasonable, out-of-the-box preset. :muscle:
 
-* First class TypeScript support.
+* Fully customizable. Easily composable. :ok_hand:
 
-* Vue auto-detection.
+* First class TypeScript support. :heart:
+
+* Vue auto-detection. :sparkles:
 
 * Powered by [@stylistic](https://eslint.style/) and [more](https://github.com/paro-paro/eslint-config#supported-plugins).
 
