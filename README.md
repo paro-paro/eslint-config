@@ -1,8 +1,8 @@
 # @paro-paro/eslint-config 
 
-[![npm](https://img.shields.io/npm/v/@paro-paro/eslint-config.svg)](https://npmjs.com/package/@paro-paro/eslint-config)
+[![npm](https://img.shields.io/npm/v/@paro-paro/eslint-config.svg?color=a1b858)](https://npmjs.com/package/@paro-paro/eslint-config)
 
-ESLint flat config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, Markdown, JSDoc and more.
+ESLint (flat) config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, Markdown, JSDoc and more.
 
 Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.com/antfu/eslint-config) 
 
@@ -44,7 +44,7 @@ export default paroparo()
 
 And that's it! :muscle:
 
-**Note:** This setup assumes that you are using ESM in your project by setting `type: "module"` in `package.json`.
+**Note:** This setup assumes that you are using ESM in your project.
 
 Even though is **highly discouraged**, you can use CommonJS as well.
 
@@ -168,17 +168,17 @@ interface ConfigOptions {
 
 * You can explicitly `enable/disable` them by setting the appropiate option to `true/false`.
 
-* By default, the `perfectionist` plugin is installed but no rules are enabled.
-
-* Sorting of `package.json` and `tsconfig.json` keys can be disabled using the `sort` option.
-
-* Predefined globals can also be disabled using the `globals` option.
+* The `perfectionist` plugin is installed but no rules are enabled by default.
 
 * Use the `ignores` option if you need to extend or override the predefined set of [global ignores](https://github.com/paro-paro/eslint-config/blob/main/src/globs.ts).
 
+* Use the `sort` option if you want to disable sorting of `package.json` and `tsconfig.json` keys.
+
+* Predefined globals can also be disabled using the `globals` option.
+
 * [eslint-config-flat-gitignore](https://github.com/antfu/eslint-config-flat-gitignore) package is also supported through the `gitignore` option.
 
-* Use the `stylisticOptions` object to customize quotes style, semi and indentation.
+* Customize quotes, semi and indentation using the `stylisticOptions` object.
 
 * To enable type aware linting use the `tsOptions` object. The preset does not include any of these rules by default. Check [docs](https://typescript-eslint.io/linting/typed-linting/) for details and caveats.
 
