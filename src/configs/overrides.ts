@@ -1,4 +1,6 @@
 /* eslint perfectionist/sort-objects: error */
+import type { Context } from '../setup'
+import type { FlatESLintConfigItemExtend } from '../types'
 import {
   GLOB_DTS,
   GLOB_MD_CODE_JS,
@@ -8,22 +10,18 @@ import {
   GLOB_TEST_JS,
   GLOB_TEST_TS,
 } from '../globs'
-import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
-import { sortPackageJson, sortTsConfig } from './sort'
 
 /* eslint-disable perfectionist/sort-objects */
 export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
+  const config: FlatESLintConfigItemExtend[] = []
+
   const {
     enableTs = true,
-    enableJson = true,
     enableStylistic = true,
     enableMarkdown = true,
-    enableSort = true,
     enableRenameRules = true,
   } = ctx
 
-  const overrides: FlatESLintConfigItemExtend[] = []
   const prefixTs = enableRenameRules ? 'ts' : '@typescript-eslint'
   const prefixStylistic = enableRenameRules ? 'stylistic' : '@stylistic'
 
@@ -123,16 +121,13 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
     },
   }
 
-  overrides.push(tests, scripts)
-
-  if (enableMarkdown)
-    overrides.push(markdownCode)
+  config.push(tests, scripts)
 
   if (enableTs)
-    overrides.push(dts)
+    config.push(dts)
 
-  if (enableJson && enableSort)
-    overrides.push(sortPackageJson, sortTsConfig)
+  if (enableMarkdown)
+    config.push(markdownCode)
 
-  return overrides
+  return config
 }

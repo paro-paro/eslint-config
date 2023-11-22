@@ -1,3 +1,5 @@
+import type { Context } from './setup'
+import type { FlatESLintConfigItemExtend } from './types'
 import gitignore from 'eslint-config-flat-gitignore'
 import {
   antfu,
@@ -6,10 +8,10 @@ import {
   imports,
   install,
   javascript,
-  jsdoc,
   jsonc,
   node,
   overrides,
+  sort,
   stylistic,
   typescript,
   unicorn,
@@ -17,38 +19,36 @@ import {
   vue,
   yml,
 } from './configs'
-import type { Context } from './setup'
-import type { FlatESLintConfigItemExtend } from './types'
 
 export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
+  const config: FlatESLintConfigItemExtend[] = []
+
   const {
+    gitignoreOptions,
+    ignoresOptions,
     enableTs,
+    enableSort,
+    enableStylistic,
     enableVue,
     enableJson,
     enableYml,
-    enableJsdoc,
-    enableStylistic,
-    gitignoreOptions,
-    ignoresOptions,
   } = ctx
 
-  const preset: FlatESLintConfigItemExtend[] = []
-
   if (gitignoreOptions)
-    preset.push(gitignore(gitignoreOptions))
+    config.push(gitignore(gitignoreOptions))
 
   if (ignoresOptions)
-    preset.push(ignores(ignoresOptions))
+    config.push(ignores(ignoresOptions))
 
-  preset.push(
+  config.push(
     ...install(ctx),
     ...javascript(ctx),
   )
 
   if (enableTs)
-    preset.push(...typescript(ctx))
+    config.push(...typescript(ctx))
 
-  preset.push(
+  config.push(
     ...unused(ctx),
     ...antfu(ctx),
     ...imports(ctx),
@@ -57,22 +57,22 @@ export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
     ...comments(ctx),
   )
 
-  if (enableJsdoc)
-    preset.push(...jsdoc(ctx))
+  if (enableSort)
+    config.push(...sort(ctx))
 
   if (enableStylistic)
-    preset.push(...stylistic(ctx))
+    config.push(...stylistic(ctx))
 
   if (enableVue)
-    preset.push(...vue(ctx))
+    config.push(...vue(ctx))
 
   if (enableJson)
-    preset.push(...jsonc(ctx))
+    config.push(...jsonc(ctx))
 
   if (enableYml)
-    preset.push(...yml(ctx))
+    config.push(...yml(ctx))
 
-  preset.push(...overrides(ctx))
+  config.push(...overrides(ctx))
 
-  return preset
+  return config
 }

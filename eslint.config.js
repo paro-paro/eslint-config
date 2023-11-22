@@ -8,42 +8,30 @@ export default paroparo(
     json: true,
     yml: true,
     markdown: true,
-    jsdoc: true,
     stylistic: true,
-    perfectionist: true,
     sort: true,
     globals: true,
     renameRules: true,
+
+    ignores: {
+      globs: ['**/playground'],
+      override: false,
+    },
+
     gitignore: {
       files: '.eslintignore',
+      strict: false,
     },
-    ignores: true,
+
     tsOptions: {
       // tsconfigPath: './tsconfig.json',
     },
+
     stylisticOptions: {
       jsx: true,
       indent: 2,
       quotes: 'single',
       semi: 'never',
-    },
-  },
-
-  {
-    files: ['**/*.js'],
-    ignores: ['eslint.config.js'],
-    rules: {
-      'perfectionist/sort-objects': 'error',
-    },
-  },
-
-  {
-    files: ['**/*.vue'],
-    rules: {
-      'no-console': 'off',
-      'vue/component-name-in-template-casing': ['warn', 'PascalCase', {
-        registeredComponentsOnly: false,
-      }],
     },
   },
 )

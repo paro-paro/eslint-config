@@ -1,16 +1,18 @@
-import process from 'node:process'
+import type { Context } from '../setup'
+import type { FlatESLintConfigItemExtend } from '../types'
 import globals from 'globals'
+import process from 'node:process'
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC, GLOB_MD, GLOB_VUE, GLOB_YML } from '../globs'
 import { parserJsonc, parserTs, parserVue, parserYml } from '../parsers'
 import {
   pluginAntfu,
   pluginComments,
   pluginImport,
-  pluginJsdoc,
   pluginJsonc,
   pluginMarkdown,
   pluginNode,
   pluginPerfectionist,
+  pluginSortExports,
   pluginStylistic,
   pluginTs,
   pluginUnicorn,
@@ -18,26 +20,23 @@ import {
   pluginVue,
   pluginYml,
 } from '../plugins'
-import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
 
 export function install(ctx: Context): FlatESLintConfigItemExtend[] {
+  const config: FlatESLintConfigItemExtend[] = []
+
   const {
     files,
     enableTs,
     enableVue,
     enableJson,
     enableYml,
-    enableJsdoc,
     enableMarkdown,
     enableStylistic,
-    enablePerfectionist,
     enableGlobals,
     enableRenameRules,
     tsOptions,
   } = ctx
 
-  const install: FlatESLintConfigItemExtend[] = []
   const tsconfigPath = tsOptions.tsconfigPath
 
   const linterOptions = {
@@ -72,17 +71,11 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
       'node': pluginNode,
       'unicorn': pluginUnicorn,
       'eslint-comments': pluginComments,
-
-      ...enableJsdoc && {
-        jsdoc: pluginJsdoc,
-      },
+      'sort-exports': pluginSortExports,
+      'perfectionist': pluginPerfectionist,
 
       ...enableStylistic && {
         [enableRenameRules ? 'stylistic' : '@stylistic']: pluginStylistic,
-      },
-
-      ...enablePerfectionist && {
-        perfectionist: pluginPerfectionist,
       },
     },
   }
@@ -185,21 +178,21 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
   }
 
   if (enableTs)
-    install.push(ts)
+    config.push(ts)
   else
-    install.push(js)
+    config.push(js)
 
   if (enableVue)
-    install.push(vue)
+    config.push(vue)
 
   if (enableJson)
-    install.push(json)
+    config.push(json)
 
   if (enableYml)
-    install.push(yml)
+    config.push(yml)
 
   if (enableMarkdown)
-    install.push(markdown)
+    config.push(markdown)
 
-  return install
+  return config
 }

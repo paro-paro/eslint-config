@@ -1,6 +1,3 @@
-import { GLOB_JS, GLOB_TS, GLOB_VUE } from './globs'
-import { autoDetectTs, autoDetectVue } from './utils'
-import { getPreset } from './preset'
 import type {
   ConfigOptions,
   FlatESLintConfigItem,
@@ -9,82 +6,84 @@ import type {
   StylisticOptions,
   TsOptions,
 } from './types'
+import { GLOB_JS, GLOB_TS, GLOB_VUE } from './globs'
+import { getPreset } from './preset'
+import { autoDetectTs, autoDetectVue } from './utils'
 
-export interface Context {
+interface Context {
   files: string[]
   enableTs: boolean
   enableVue: boolean
   enableJson: boolean
   enableYml: boolean
   enableMarkdown: boolean
-  enableJsdoc: boolean
   enableStylistic: boolean
-  enablePerfectionist: boolean
   enableSort: boolean
   enableGlobals: boolean
   enableRenameRules: boolean
-  gitignoreOptions: false | GitIgnoreOptions
-  ignoresOptions: false | IgnoresOptions
+  ignoresOptions: IgnoresOptions | false
+  gitignoreOptions: GitIgnoreOptions | false
   tsOptions: TsOptions
   stylisticOptions: StylisticOptions
 }
 
-export function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigItem[]): FlatESLintConfigItem[] {
+function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigItem[]): FlatESLintConfigItem[] {
   const {
     ts: enableTs = autoDetectTs(),
     vue: enableVue = autoDetectVue(),
     json: enableJson = true,
     yml: enableYml = true,
     markdown: enableMarkdown = true,
-    jsdoc: enableJsdoc = true,
     stylistic: enableStylistic = true,
-    perfectionist: enablePerfectionist = true,
     sort: enableSort = true,
     globals: enableGlobals = true,
     renameRules: enableRenameRules = true,
   } = options
 
-  const ctx: Context = {
-    files:
-      enableTs
-        ? enableVue ? [...GLOB_TS, GLOB_VUE] : [...GLOB_TS]
-        : enableVue ? [...GLOB_JS, GLOB_VUE] : [...GLOB_JS],
+  const files
+    = enableTs
+      ? enableVue ? [...GLOB_TS, GLOB_VUE] : [...GLOB_TS]
+      : enableVue ? [...GLOB_JS, GLOB_VUE] : [...GLOB_JS]
 
+  const ignoresOptions
+    = options.ignores === false
+      ? false
+      : typeof options.ignores === 'object'
+        ? options.ignores
+        : {}
+
+  const gitignoreOptions
+    = options.gitignore === false
+      ? false
+      : typeof options.gitignore === 'object'
+        ? options.gitignore
+        : {}
+
+  const tsOptions
+    = !enableTs
+      ? {}
+      : options.tsOptions ?? {}
+
+  const stylisticOptions
+    = !enableStylistic
+      ? {}
+      : options.stylisticOptions ?? {}
+
+  const ctx: Context = {
+    files,
     enableTs,
     enableVue,
     enableJson,
     enableYml,
     enableMarkdown,
-    enableJsdoc,
     enableStylistic,
-    enablePerfectionist,
     enableSort,
     enableGlobals,
     enableRenameRules,
-
-    gitignoreOptions:
-      options.gitignore === false
-        ? false
-        : typeof options.gitignore === 'object'
-          ? options.gitignore
-          : {},
-
-    ignoresOptions:
-      options.ignores === false
-        ? false
-        : typeof options.ignores === 'object'
-          ? options.ignores
-          : {},
-
-    tsOptions:
-      !enableTs
-        ? {}
-        : options.tsOptions ?? {},
-
-    stylisticOptions:
-      !enableStylistic
-        ? {}
-        : options.stylisticOptions ?? {},
+    ignoresOptions,
+    gitignoreOptions,
+    tsOptions,
+    stylisticOptions,
   }
 
   const preset = getPreset(ctx)
@@ -92,3 +91,6 @@ export function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLint
 
   return preset
 }
+
+export type { Context }
+export { paroparo }

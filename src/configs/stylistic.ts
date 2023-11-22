@@ -7,6 +7,7 @@ export function stylistic(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     files,
     stylisticOptions,
+    enableTs,
     enableRenameRules,
   } = ctx
 
@@ -22,7 +23,9 @@ export function stylistic(ctx: Context): FlatESLintConfigItemExtend[] {
   return [
     {
       files,
-      name: 'config:rules:stylistic',
+      name: enableTs
+        ? 'config:rules:typescript:stylistic'
+        : 'config:rules:javascript:stylistic',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {

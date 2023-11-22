@@ -14,7 +14,7 @@ export function javascript(ctx: Context): FlatESLintConfigItemExtend[] {
     {
       files,
       name: enableTs
-        ? 'config:rules:typescript'
+        ? 'config:rules:typescript:1'
         : 'config:rules:javascript',
 
       /* eslint-enable perfectionist/sort-objects */
@@ -140,16 +140,6 @@ export function javascript(ctx: Context): FlatESLintConfigItemExtend[] {
         'prefer-spread': 'error',
         'prefer-template': 'error',
         'require-await': 'error',
-        'sort-imports': [
-          'error',
-          {
-            allowSeparatedGroups: false,
-            ignoreCase: false,
-            ignoreDeclarationSort: true,
-            ignoreMemberSort: false,
-            memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-          },
-        ],
         'symbol-description': 'error',
         'unicode-bom': ['error', 'never'],
         'use-isnan': ['error', { enforceForIndexOf: true, enforceForSwitchCase: true }],

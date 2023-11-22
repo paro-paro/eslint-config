@@ -1,8 +1,8 @@
 /* eslint perfectionist/sort-objects: error */
-import { GLOB_VUE } from '../globs'
-import { pluginVue } from '../plugins'
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
+import { GLOB_VUE } from '../globs'
+import { pluginVue } from '../plugins'
 
 export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
   const {

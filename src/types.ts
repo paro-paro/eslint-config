@@ -1,3 +1,4 @@
+/* eslint perfectionist/sort-interfaces: ["error", { type: 'natural', order: 'asc' }] */
 import type { FlatESLintConfigItem } from 'eslint-define-config'
 
 interface FlatESLintConfigItemExtend extends FlatESLintConfigItem {
@@ -9,18 +10,29 @@ interface FlatESLintConfigItemExtend extends FlatESLintConfigItem {
 
 interface ConfigOptions {
   /**
-   * Enable or disable TypeScript support.
+   * Support for `eslint-config-flat-gitignore` package.
    *
-   * @default Autodetected based on locally installed dependencies.
+   * @see https://github.com/antfu/eslint-config-flat-gitignore
+   * @default true
    */
-  ts?: boolean
+  gitignore?: GitIgnoreOptions | boolean
 
   /**
-   * Enable or disable Vue 3 support.
+   * Enable or disable the predefined set of globals.
    *
-   * @default Autodetected based on locally installed dependencies.
+   * Included: `node`, `browser` and `es2021`.
+   *
+   * @default true
    */
-  vue?: boolean
+  globals?: boolean
+
+  /**
+   * Enable, disable, extend or override the predefined set of excluded globs.
+   *
+   * @see https://github.com/paro-paro/eslint-config/blob/main/src/globs.ts
+   * @default true
+   */
+  ignores?: IgnoresOptions | boolean
 
   /**
    * Enable or disable JSON, JSONC and JSON5 support.
@@ -30,13 +42,6 @@ interface ConfigOptions {
   json?: boolean
 
   /**
-   * Enable or disable YAML support.
-   *
-   * @default true
-   */
-  yml?: boolean
-
-  /**
    * Enable or disable Markdown support.
    *
    * @default true
@@ -44,11 +49,20 @@ interface ConfigOptions {
   markdown?: boolean
 
   /**
-   * Enable or disable JSDoc rules.
+   * Rename typescript and stylistic rules.
    *
    * @default true
    */
-  jsdoc?: boolean
+  renameRules?: boolean
+
+  /**
+   * Enable or disable sort related rules.
+   *
+   * Applies to all supported languages.
+   *
+   * @default true
+   */
+  sort?: boolean
 
   /**
    * Enable or disable stylistic rules.
@@ -60,70 +74,46 @@ interface ConfigOptions {
   stylistic?: boolean
 
   /**
-   * Install perfectionist plugin.
+   * Customize quotes, semi, indentation...
    *
-   * No rules from this plugin are enabled by default.
+   * This option has no effect if `stylistic` is explicitly disabled.
    *
-   * @default true
+   * @default undefined
    */
-  perfectionist?: boolean
+  stylisticOptions?: StylisticOptions
 
   /**
-   * Enable or disable default sorting of package.json and tsconfig.json keys.
+   * Enable or disable TypeScript support.
    *
-   * Only applies if JSON is enabled.
-   *
-   * @default true
+   * @default Autodetected based on locally installed dependencies.
    */
-  sort?: boolean
+  ts?: boolean
 
   /**
-   * Enable or disable globals.
+   * Enable type aware linting rules.
    *
-   * Included: `node`, `browser` and `es2021`.
-   *
-   * @default true
-   */
-  globals?: boolean
-
-  /**
-   * Rename typescript and stylistic rules's prefixes.
-   *
-   * @default true
-   */
-  renameRules?: boolean
-
-  /**
-   * Support for `eslint-config-flat-gitignore` package.
-   *
-   * @see https://github.com/antfu/eslint-config-flat-gitignore
-   * @default true
-   */
-  gitignore?: boolean | GitIgnoreOptions
-
-  /**
-   * Enable or disable a predefined set of global ignores.
-   *
-   * You can also extend or override the predefined set by passing an options object.
-   *
-   * @see https://github.com/paro-paro/eslint-config/blob/main/src/globs.ts
-   * @default true
-   */
-  ignores?: boolean | IgnoresOptions
-
-  /**
-   * Pass additional options to the typescript configuration object.
+   * No type aware rules are enabled by default.
    *
    * This option has no effect if `ts` is explicitly disabled.
+   *
+   * @default undefined
+   *
    */
   tsOptions?: TsOptions
 
   /**
-   * Pass additional options to the stylistic configuration object.
+   * Enable or disable Vue 3 support.
    *
-   * This option has no effect if `stylistic` is explicitly disabled.
+   * @default Autodetected based on locally installed dependencies.
    */
-  stylisticOptions?: StylisticOptions
+  vue?: boolean
+
+  /**
+   * Enable or disable YAML support.
+   *
+   * @default true
+   */
+  yml?: boolean
 }
 
 interface GitIgnoreOptions {
@@ -144,14 +134,14 @@ interface GitIgnoreOptions {
 
 interface IgnoresOptions {
   /**
-   * Array of globs to extend or override.
+   * Array of excluded globs to extend or override.
    *
    * @default []
    */
   globs?: string[]
 
   /**
-   * Override the predefined set of global ignores instead of extending them.
+   * Override the predefined set of excluded globs instead of extending them.
    *
    * @default false
    */
@@ -160,9 +150,9 @@ interface IgnoresOptions {
 
 interface TsOptions {
   /**
-   * Pass relative tsconfig paths to enable type aware linting rules.
+   * Path or array of paths to tsconfig files.
    *
-   * No type aware rules are enabled by default.
+   * Check documentation for more details.
    *
    * @see https://typescript-eslint.io/linting/typed-linting/
    */
@@ -171,18 +161,18 @@ interface TsOptions {
 
 interface StylisticOptions {
   /**
-   * Enable or disable jsx-* stylistic rules.
-   *
-   * @default true
-   */
-  jsx?: boolean
-
-  /**
-   * Set default identation.
+   * Set default indentation.
    *
    * @default 2
    */
   indent?: number | 'tab'
+
+  /**
+   * Enable or disable `jsx-*` stylistic rules.
+   *
+   * @default true
+   */
+  jsx?: boolean
 
   /**
    * Set quotes style.
@@ -200,11 +190,11 @@ interface StylisticOptions {
 }
 
 export type {
+  ConfigOptions,
   FlatESLintConfigItem,
   FlatESLintConfigItemExtend,
-  ConfigOptions,
   GitIgnoreOptions,
   IgnoresOptions,
-  TsOptions,
   StylisticOptions,
+  TsOptions,
 }
