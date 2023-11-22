@@ -1,4 +1,3 @@
-/* eslint perfectionist/sort-objects: error */
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
 
@@ -6,8 +5,8 @@ import type { FlatESLintConfigItemExtend } from '../types'
 export function typescript(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     files,
-    enableRenameRules,
     tsOptions,
+    enableRenameRules,
   } = ctx
 
   const tsconfigPath = tsOptions.tsconfigPath

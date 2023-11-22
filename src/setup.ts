@@ -21,10 +21,10 @@ interface Context {
   enableSort: boolean
   enableGlobals: boolean
   enableRenameRules: boolean
-  ignoresOptions: IgnoresOptions | false
-  gitignoreOptions: GitIgnoreOptions | false
   tsOptions: TsOptions
   stylisticOptions: StylisticOptions
+  ignoresOptions: false | IgnoresOptions
+  gitignoreOptions: false | GitIgnoreOptions
 }
 
 function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigItem[]): FlatESLintConfigItem[] {
@@ -45,6 +45,16 @@ function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigI
       ? enableVue ? [...GLOB_TS, GLOB_VUE] : [...GLOB_TS]
       : enableVue ? [...GLOB_JS, GLOB_VUE] : [...GLOB_JS]
 
+  const tsOptions
+    = !enableTs
+      ? {}
+      : options.tsOptions ?? {}
+
+  const stylisticOptions
+    = !enableStylistic
+      ? {}
+      : options.stylisticOptions ?? {}
+
   const ignoresOptions
     = options.ignores === false
       ? false
@@ -59,16 +69,6 @@ function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigI
         ? options.gitignore
         : {}
 
-  const tsOptions
-    = !enableTs
-      ? {}
-      : options.tsOptions ?? {}
-
-  const stylisticOptions
-    = !enableStylistic
-      ? {}
-      : options.stylisticOptions ?? {}
-
   const ctx: Context = {
     files,
     enableTs,
@@ -80,10 +80,10 @@ function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigI
     enableSort,
     enableGlobals,
     enableRenameRules,
-    ignoresOptions,
-    gitignoreOptions,
     tsOptions,
     stylisticOptions,
+    ignoresOptions,
+    gitignoreOptions,
   }
 
   const preset = getPreset(ctx)

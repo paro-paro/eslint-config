@@ -1,7 +1,6 @@
-/* eslint perfectionist/sort-objects: error */
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
-import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs'
+import { GLOB_JSON } from '../globs'
 
 export function jsonc(ctx: Context): FlatESLintConfigItemExtend[] {
   const config: FlatESLintConfigItemExtend[] = []
@@ -17,7 +16,7 @@ export function jsonc(ctx: Context): FlatESLintConfigItemExtend[] {
   } = stylisticOptions
 
   const json: FlatESLintConfigItemExtend = {
-    files: [GLOB_JSON, GLOB_JSONC, GLOB_JSON5],
+    files: [GLOB_JSON],
     name: 'config:rules:jsonc',
     rules: {
       'jsonc/no-bigint-literals': 'error',
@@ -62,7 +61,7 @@ export function jsonc(ctx: Context): FlatESLintConfigItemExtend[] {
     },
   }
 
-  const packageJson: FlatESLintConfigItemExtend = {
+  const sortPackageJson: FlatESLintConfigItemExtend = {
     files: ['**/package.json'],
     name: 'config:rules:jsonc:sort:package.json',
     rules: {
@@ -148,7 +147,7 @@ export function jsonc(ctx: Context): FlatESLintConfigItemExtend[] {
     },
   }
 
-  const tsConfig: FlatESLintConfigItemExtend = {
+  const sortTsConfig: FlatESLintConfigItemExtend = {
     files: ['**/tsconfig.json', '**/tsconfig.*.json'],
     name: 'config:rules:jsonc:sort:tsconfig.json',
     rules: {
@@ -273,7 +272,7 @@ export function jsonc(ctx: Context): FlatESLintConfigItemExtend[] {
   config.push(json)
 
   if (enableSort)
-    config.push(packageJson, tsConfig)
+    config.push(sortPackageJson, sortTsConfig)
 
   return config
 }

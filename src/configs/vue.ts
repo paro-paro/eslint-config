@@ -1,4 +1,3 @@
-/* eslint perfectionist/sort-objects: error */
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
 import { GLOB_VUE } from '../globs'
@@ -18,7 +17,6 @@ export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
     {
       files: [GLOB_VUE],
       name: 'config:rules:vue',
-
       rules: {
         ...pluginVue.configs.base.rules,
         ...pluginVue.configs['vue3-essential'].rules,

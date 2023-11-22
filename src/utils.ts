@@ -7,3 +7,7 @@ export function autoDetectTs(): boolean {
 export function autoDetectVue(): boolean {
   return ['vue', 'nuxt', 'vitepress'].some(i => isPackageExists(i))
 }
+
+export function interopDefault(m: any) {
+  return m.default || m
+}

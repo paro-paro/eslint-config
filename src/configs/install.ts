@@ -1,8 +1,9 @@
+/* eslint-disable perfectionist/sort-objects */
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
-import globals from 'globals'
 import process from 'node:process'
-import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC, GLOB_MD, GLOB_VUE, GLOB_YML } from '../globs'
+import globals from 'globals'
+import { GLOB_JSON, GLOB_MD, GLOB_VUE, GLOB_YML } from '../globs'
 import { parserJsonc, parserTs, parserVue, parserYml } from '../parsers'
 import {
   pluginAntfu,
@@ -22,8 +23,6 @@ import {
 } from '../plugins'
 
 export function install(ctx: Context): FlatESLintConfigItemExtend[] {
-  const config: FlatESLintConfigItemExtend[] = []
-
   const {
     files,
     enableTs,
@@ -38,6 +37,7 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
   } = ctx
 
   const tsconfigPath = tsOptions.tsconfigPath
+  const config: FlatESLintConfigItemExtend[] = []
 
   const linterOptions = {
     linterOptions: {
@@ -87,12 +87,11 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
     ...linterOptions,
 
     languageOptions: {
-      ...shared,
+      ...shared as any,
       ...enableGlobals && supportedGlobals,
 
-      // @ts-expect-error - relax!
       parserOptions: {
-        ...shared,
+        ...shared as any,
         ecmaFeatures: { jsx: true },
       },
     },
@@ -105,19 +104,20 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
     ...linterOptions,
 
     languageOptions: {
-      ...shared,
-      ...enableGlobals && supportedGlobals,
       parser: parserTs,
+      ...shared as any,
+      ...enableGlobals && supportedGlobals,
 
-      // @ts-expect-error - relax!
       parserOptions: {
-        ...shared,
+        ...shared as any,
         ecmaFeatures: { jsx: true },
-        extraFileExtensions: enableVue ? ['.vue'] : [],
+
         ...tsconfigPath && {
           project: tsconfigPath,
           tsconfigRootDir: process.cwd(),
         },
+
+        extraFileExtensions: enableVue ? ['.vue'] : [],
       },
     },
   }
@@ -132,22 +132,20 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
     ...linterOptions,
 
     languageOptions: {
-      ...shared,
-      ...supportedGlobals,
       parser: parserVue,
+      ...shared as any,
+      ...enableGlobals && supportedGlobals,
 
-      // @ts-expect-error - relax!
       parserOptions: {
-        ...shared,
+        ...shared as any,
         ecmaFeatures: { jsx: true },
         parser: enableTs ? parserTs as any : null,
-        // vueFeatures: {},
       },
     },
   }
 
   const json: FlatESLintConfigItemExtend = {
-    files: [GLOB_JSON, GLOB_JSONC, GLOB_JSON5],
+    files: [GLOB_JSON],
     name: 'config:install:jsonc',
     plugins: {
       jsonc: pluginJsonc,

@@ -1,4 +1,4 @@
-/* eslint perfectionist/sort-interfaces: ["error", { type: 'natural', order: 'asc' }] */
+/* eslint perfectionist/sort-interfaces: ['error', { type: 'natural', order: 'asc' }] */
 import type { FlatESLintConfigItem } from 'eslint-define-config'
 
 interface FlatESLintConfigItemExtend extends FlatESLintConfigItem {
@@ -148,17 +148,6 @@ interface IgnoresOptions {
   override?: boolean
 }
 
-interface TsOptions {
-  /**
-   * Path or array of paths to tsconfig files.
-   *
-   * Check documentation for more details.
-   *
-   * @see https://typescript-eslint.io/linting/typed-linting/
-   */
-  tsconfigPath?: string | string[]
-}
-
 interface StylisticOptions {
   /**
    * Set default indentation.
@@ -187,6 +176,17 @@ interface StylisticOptions {
    * @default 'never'
    */
   semi?: 'never' | 'always'
+}
+
+interface TsOptions {
+  /**
+   * Path or array of paths to tsconfig files.
+   *
+   * Check documentation for more details.
+   *
+   * @see https://typescript-eslint.io/linting/typed-linting/
+   */
+  tsconfigPath?: string | string[]
 }
 
 export type {

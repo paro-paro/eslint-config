@@ -1,4 +1,3 @@
-/* eslint perfectionist/sort-objects: error */
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
 
@@ -6,9 +5,9 @@ import type { FlatESLintConfigItemExtend } from '../types'
 export function stylistic(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     files,
-    stylisticOptions,
     enableTs,
     enableRenameRules,
+    stylisticOptions,
   } = ctx
 
   const {

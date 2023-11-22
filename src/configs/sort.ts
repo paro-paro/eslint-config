@@ -1,4 +1,3 @@
-/* eslint perfectionist/sort-objects: error */
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
 
@@ -23,9 +22,11 @@ export function sort(ctx: Context): FlatESLintConfigItemExtend[] {
             'error',
             {
               'groups': [
-                ['builtin-type', 'external-type'],
+                'builtin-type',
+                'external-type',
                 ['internal-type', 'parent-type', 'sibling-type', 'index-type'],
-                ['builtin', 'external'],
+                'builtin',
+                'external',
                 ['internal', 'parent', 'sibling', 'index'],
                 ['side-effect', 'side-effect-style', 'style', 'object', 'unknown'],
               ],

@@ -34,4 +34,11 @@ export default paroparo(
       semi: 'never',
     },
   },
+
+  {
+    files: ['src/configs/*.ts'],
+    rules: {
+      'perfectionist/sort-objects': 'error',
+    },
+  },
 )

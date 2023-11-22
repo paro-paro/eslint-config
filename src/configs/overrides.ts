@@ -1,10 +1,9 @@
-/* eslint perfectionist/sort-objects: error */
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
 import {
   GLOB_DTS,
-  GLOB_MD_CODE_JS,
-  GLOB_MD_CODE_TS,
+  GLOB_MD_JS,
+  GLOB_MD_TS,
   GLOB_SCRIPTS_JS,
   GLOB_SCRIPTS_TS,
   GLOB_TEST_JS,
@@ -66,8 +65,8 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
 
   const markdownCode: FlatESLintConfigItemExtend = {
     files: enableTs
-      ? [...GLOB_MD_CODE_TS]
-      : [...GLOB_MD_CODE_JS],
+      ? [...GLOB_MD_TS]
+      : [...GLOB_MD_JS],
 
     name: enableTs
       ? 'config:overrides:typescript:markdown'

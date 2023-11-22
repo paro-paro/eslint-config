@@ -1,4 +1,3 @@
-/* eslint perfectionist/sort-objects: error */
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
 import { GLOB_YML } from '../globs'
