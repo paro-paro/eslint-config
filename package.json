@@ -37,6 +37,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "typecheck": "tsc --noEmit",
+    "printconfig": "eslint --print-config",
     "preview": "eslint-flat-config-viewer",
     "prepare:hooks": "simple-git-hooks",
     "prepublishOnly": "pnpm run build",
