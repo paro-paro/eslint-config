@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@paro-paro/eslint-config.svg?color=a1b858)](https://npmjs.com/package/@paro-paro/eslint-config)
 
-ESLint config preset for JavaScript, TypeScript, JSX, TSX, Vue 3, JSON, Yaml, Markdown and more.
+ESLint config preset for JavaScript, TypeScript, JSX, TSX, Vue, JSON, Yaml, Markdown, JSDoc and more.
 
 Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.com/antfu/eslint-config) 
 
@@ -132,7 +132,7 @@ Editor customizations :boom:
 
 ### Configuration Options
 
-#### Types
+[Types](https://github.com/paro-paro/eslint-config/blob/main/src/types.ts)
 
 ```ts
 function paroparo(options?: ConfigOptions, ...userConfigs: FlatESLintConfigItem[]): FlatESLintConfigItem[]
@@ -143,32 +143,31 @@ interface ConfigOptions {
   json?: boolean
   yml?: boolean
   markdown?: boolean
+  jsdoc?: boolean
   stylistic?: boolean
   sort?: boolean
   globals?: boolean
-  renameRules?: boolean
   ignores?: IgnoresOptions | boolean
   gitignore?: GitIgnoreOptions | boolean
   tsOptions?: TsOptions
   stylisticOptions?: StylisticOptions
+  renameRules?: boolean
 }
 ```
 
-[Check Types](https://github.com/paro-paro/eslint-config/blob/main/src/types.ts)
-
 #### Details
 
-* Rules for `typescript` and `vue` will be automatically enabled if related packages are locally installed.
+* Rules for `ts` and `vue` will be automatically enabled if related packages are locally installed.
 
-* Rules for `json`, `yml`, `markdown`, and `stylistic` are enabled by default.
+* Rules for `json`, `yml`, `markdown`, `jsdoc` and `stylistic` are enabled by default.
 
 * You can explicitly `enable/disable` them by setting the appropiate option to `true/false`.
 
-* Use the `sort` option if you want to disable all sort-related rules.
+* Use the `sort` option if you want to disable sort related rules.
 
 * Use the `globals` option if you do not want to include the predefined set of globals.
 
-* Use the `ignores` option if you need to extend or override the predefined set of [excluded globs](https://github.com/paro-paro/eslint-config/blob/main/src/globs.ts).
+* Use the `ignores` option if you need to disable, extend or override the predefined set of [excluded globs](https://github.com/paro-paro/eslint-config/blob/main/src/globs.ts).
 
 * [eslint-config-flat-gitignore](https://github.com/antfu/eslint-config-flat-gitignore) package is supported through the `gitignore` option.
 
@@ -199,7 +198,7 @@ interface ConfigOptions {
 | [eslint-plugin-vue](https://eslint.vuejs.org)                                               | `vue/*` |
 | [eslint-plugin-yml](https://github.com/ota-meshi/eslint-plugin-yml)                         | `yml/*` |
 
-Set `renameRules` to `false` in case you want to use `@stylistic` and `@typescript-eslint` as rules's prefixes instead.
+Set `renameRules` to `false` in case you want to use `@stylistic` and `@typescript-eslint` instead.
 
 > This option does not apply to any other plugin.
 

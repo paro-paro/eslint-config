@@ -9,6 +9,7 @@ import {
   pluginAntfu,
   pluginComments,
   pluginImport,
+  pluginJsdoc,
   pluginJsonc,
   pluginMarkdown,
   pluginNode,
@@ -30,7 +31,6 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
     enableJson,
     enableYml,
     enableMarkdown,
-    enableStylistic,
     enableGlobals,
     enableRenameRules,
     tsOptions,
@@ -64,19 +64,16 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
       ...enableTs && {
         [enableRenameRules ? 'ts' : '@typescript-eslint']: pluginTs,
       },
-
       'unused-imports': pluginUnusedImports,
       'antfu': pluginAntfu,
       'import': pluginImport,
       'node': pluginNode,
       'unicorn': pluginUnicorn,
       'eslint-comments': pluginComments,
+      'jsdoc': pluginJsdoc,
       'sort-exports': pluginSortExports,
       'perfectionist': pluginPerfectionist,
-
-      ...enableStylistic && {
-        [enableRenameRules ? 'stylistic' : '@stylistic']: pluginStylistic,
-      },
+      [enableRenameRules ? 'stylistic' : '@stylistic']: pluginStylistic,
     },
   }
 

@@ -35,6 +35,13 @@ interface ConfigOptions {
   ignores?: IgnoresOptions | boolean
 
   /**
+   * Enable or disable JSDoc rules.
+   *
+   * @default true
+   */
+  jsdoc?: boolean
+
+  /**
    * Enable or disable JSON, JSONC and JSON5 support.
    *
    * @default true
@@ -102,7 +109,7 @@ interface ConfigOptions {
   tsOptions?: TsOptions
 
   /**
-   * Enable or disable Vue 3 support.
+   * Enable or disable Vue support.
    *
    * @default Autodetected based on locally installed dependencies.
    */

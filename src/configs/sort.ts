@@ -18,6 +18,17 @@ export function sort(ctx: Context): FlatESLintConfigItemExtend[] {
       /* eslint-enable perfectionist/sort-objects */
       rules: {
         ...{
+          'sort-exports/sort-exports': [
+            'error',
+            {
+              ignoreCase: true,
+              sortDir: 'asc',
+              sortExportKindFirst: 'type',
+            },
+          ],
+        },
+
+        ...{
           'perfectionist/sort-imports': [
             'error',
             {
@@ -37,17 +48,6 @@ export function sort(ctx: Context): FlatESLintConfigItemExtend[] {
             },
           ],
           'perfectionist/sort-named-imports': ['error', { order: 'asc', type: 'natural' }],
-        },
-
-        ...{
-          'sort-exports/sort-exports': [
-            'error',
-            {
-              ignoreCase: true,
-              sortDir: 'asc',
-              sortExportKindFirst: 'type',
-            },
-          ],
         },
       },
     },

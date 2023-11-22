@@ -8,6 +8,7 @@ import {
   imports,
   install,
   javascript,
+  jsdoc,
   jsonc,
   node,
   overrides,
@@ -27,6 +28,7 @@ export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
     gitignoreOptions,
     ignoresOptions,
     enableTs,
+    enableJsdoc,
     enableSort,
     enableStylistic,
     enableVue,
@@ -56,6 +58,9 @@ export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
     ...unicorn(ctx),
     ...comments(ctx),
   )
+
+  if (enableJsdoc)
+    config.push(...jsdoc(ctx))
 
   if (enableSort)
     config.push(...sort(ctx))

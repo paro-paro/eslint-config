@@ -8,8 +8,9 @@ export default paroparo(
     json: true,
     yml: true,
     markdown: true,
-    stylistic: true,
+    jsdoc: true,
     sort: true,
+    stylistic: true,
     globals: true,
     renameRules: true,
 
@@ -36,6 +37,7 @@ export default paroparo(
   },
 
   {
+    // do not remove!
     files: ['src/configs/*.ts'],
     rules: {
       'perfectionist/sort-objects': 'error',

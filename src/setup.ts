@@ -17,8 +17,9 @@ interface Context {
   enableJson: boolean
   enableYml: boolean
   enableMarkdown: boolean
-  enableStylistic: boolean
+  enableJsdoc: boolean
   enableSort: boolean
+  enableStylistic: boolean
   enableGlobals: boolean
   enableRenameRules: boolean
   tsOptions: TsOptions
@@ -34,8 +35,9 @@ function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigI
     json: enableJson = true,
     yml: enableYml = true,
     markdown: enableMarkdown = true,
-    stylistic: enableStylistic = true,
+    jsdoc: enableJsdoc = true,
     sort: enableSort = true,
+    stylistic: enableStylistic = true,
     globals: enableGlobals = true,
     renameRules: enableRenameRules = true,
   } = options
@@ -76,8 +78,9 @@ function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigI
     enableJson,
     enableYml,
     enableMarkdown,
-    enableStylistic,
+    enableJsdoc,
     enableSort,
+    enableStylistic,
     enableGlobals,
     enableRenameRules,
     tsOptions,
