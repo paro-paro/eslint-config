@@ -127,7 +127,7 @@ interface ConfigOptions {
 
 interface GitIgnoreOptions {
   /**
-   * File or array of files to scan for ignores globs.
+   * File or array of files to scan for ignore globs.
    *
    * @default '.gitignore'
    */
@@ -143,7 +143,7 @@ interface GitIgnoreOptions {
 
 interface IgnoresOptions {
   /**
-   * Array of excluded globs to extend or override.
+   * Array of ignore globs to extend or override.
    *
    * @default []
    */
