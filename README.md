@@ -10,19 +10,19 @@ Credit: [sxzz](https://github.com/sxzz/eslint-config) & [antfu](https://github.c
 
 * One line setup! :rocket:
 
-* ESLint for both linting and formatting. :wrench:
+* ESLint for both linting and formatting :wrench:
 
-* Flat config. No prettier. :sunglasses: 
+* Flat config. No prettier :sunglasses: 
 
-* Fully customizable. Easily composable. :ok_hand:
+* Fully customizable. Easily composable :ok_hand:
 
-* Vue auto-detection. :sparkles:
+* Vue auto-detection :sparkles:
 
-* First class TypeScript support. :heart:
+* First class TypeScript support :heart:
 
-* Strict, although reasonable, out-of-the-box preset. :muscle:
+* Strict, although reasonable, out-of-the-box preset :muscle:
 
-* Powered by [@stylistic](https://eslint.style/) and [more](https://github.com/paro-paro/eslint-config#supported-plugins). :point_down:
+* Powered by [@stylistic](https://eslint.style/) and [more](https://github.com/paro-paro/eslint-config#supported-plugins) :point_down:
 
 ## Install
 
