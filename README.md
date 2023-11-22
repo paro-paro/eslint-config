@@ -67,7 +67,7 @@ import { paroparo } from '@paro-paro/eslint-config'
 
 export default paroparo(
   {
-    // Configuration Options (see below)
+    // configuration options (see below)
   },
 
   // extend or override the default configuration by passing any number of flat config objects!
@@ -157,11 +157,11 @@ interface ConfigOptions {
 
 #### Details
 
-* Rules for `ts` and `vue` will be automatically enabled if related packages are locally installed.
+* Rules for `ts` and `vue` will be automatically enabled if [related packages](https://github.com/paro-paro/eslint-config/blob/main/src/utils.ts) are locally installed.
 
 * Rules for `json`, `yml`, `markdown`, `jsdoc` and `stylistic` are enabled by default.
 
-* You can explicitly `enable/disable` them by setting the appropiate option to `true/false`.
+* Use the appropiate option to explicitly `enable` or `disable` them.
 
 * Use the `sort` option if you want to disable sort related rules.
 
@@ -171,7 +171,7 @@ interface ConfigOptions {
 
 * [eslint-config-flat-gitignore](https://github.com/antfu/eslint-config-flat-gitignore) package is supported through the `gitignore` option.
 
-* To enable type aware linting use the `tsOptions` object. The preset does not include any of these rules by default. Check [docs](https://typescript-eslint.io/linting/typed-linting/) for details and caveats.
+* To enable type aware linting use the `tsOptions` object. The preset does not include any of these rules by default. Check [docs](https://typescript-eslint.io/linting/typed-linting/) for details.
 
 * Customize quotes, semi and indentation using the `stylisticOptions` object.
 

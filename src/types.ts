@@ -81,7 +81,7 @@ interface ConfigOptions {
   stylistic?: boolean
 
   /**
-   * Customize quotes, semi, indentation...
+   * Customize quotes, semi, indentation.
    *
    * This option has no effect if `stylistic` is explicitly disabled.
    *
@@ -97,7 +97,7 @@ interface ConfigOptions {
   ts?: boolean
 
   /**
-   * Enable type aware linting rules.
+   * Enable type aware rules.
    *
    * No type aware rules are enabled by default.
    *
@@ -125,7 +125,7 @@ interface ConfigOptions {
 
 interface GitIgnoreOptions {
   /**
-   * File or array of files to scan for ignores patterns.
+   * File or array of files to scan for ignores globs.
    *
    * @default '.gitignore'
    */
@@ -189,7 +189,7 @@ interface TsOptions {
   /**
    * Path or array of paths to tsconfig files.
    *
-   * Check documentation for more details.
+   * Check documentation for details.
    *
    * @see https://typescript-eslint.io/linting/typed-linting/
    */

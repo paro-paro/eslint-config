@@ -17,7 +17,7 @@ export const GLOB_MD_JS = [`${GLOB_MD}/*.js?(x)`]
 export const GLOB_MD_TS = [`${GLOB_MD}/*.ts?(x)`, ...GLOB_MD_JS]
 export const GLOB_DTS = ['**/*.d.ts']
 
-/* exclude globs */
+/* excluded globs */
 export const GLOB_DIST = '**/dist'
 export const GLOB_NODE_MODULES = '**/node_modules'
 export const GLOB_LOCKFILES = [
