@@ -13,6 +13,7 @@ interface ConfigOptions {
    * Support for `eslint-config-flat-gitignore` package.
    *
    * @see https://github.com/antfu/eslint-config-flat-gitignore
+   *
    * @default true
    */
   gitignore?: GitIgnoreOptions | boolean
@@ -30,6 +31,7 @@ interface ConfigOptions {
    * Enable, disable, extend or override the predefined set of excluded globs.
    *
    * @see https://github.com/paro-paro/eslint-config/blob/main/src/globs.ts
+   *
    * @default true
    */
   ignores?: IgnoresOptions | boolean
