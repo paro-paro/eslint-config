@@ -2,14 +2,12 @@ import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
 import {
   GLOB_DTS,
-  GLOB_JSON,
   GLOB_MD_JS,
   GLOB_MD_TS,
   GLOB_SCRIPTS_JS,
   GLOB_SCRIPTS_TS,
   GLOB_TEST_JS,
   GLOB_TEST_TS,
-  GLOB_YML,
 } from '../globs'
 
 /* eslint-disable perfectionist/sort-objects */
@@ -18,8 +16,6 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
 
   const {
     enableTs,
-    enableJson,
-    enableYml,
     enableMarkdown,
     enableStylistic,
     enableRenameRules,
@@ -64,22 +60,6 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
       'eslint-comments/no-unlimited-disable': 'off',
       'import/no-duplicates': 'off',
       'unused-imports/no-unused-vars': 'off',
-    },
-  }
-
-  const yml: FlatESLintConfigItemExtend = {
-    files: [GLOB_YML],
-    name: 'config:overrides:yml',
-    rules: {
-      [`${prefixStylistic}/no-multi-spaces`]: 'off',
-    },
-  }
-
-  const json: FlatESLintConfigItemExtend = {
-    files: [GLOB_JSON],
-    name: 'config:overrides:yml',
-    rules: {
-      [`${prefixStylistic}/no-multi-spaces`]: 'off',
     },
   }
 
@@ -147,12 +127,6 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
 
   if (enableMarkdown)
     config.push(markdownCode)
-
-  if (enableYml && enableStylistic)
-    config.push(yml)
-
-  if (enableJson && enableStylistic)
-    config.push(json)
 
   return config
 }
