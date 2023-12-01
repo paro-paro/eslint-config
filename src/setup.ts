@@ -6,12 +6,13 @@ import type {
   StylisticOptions,
   TsOptions,
 } from './types'
-import { GLOB_JS, GLOB_TS, GLOB_VUE } from './globs'
+import { GLOB_JS, GLOB_JSON, GLOB_TS, GLOB_VUE, GLOB_YML } from './globs'
 import { getPreset } from './preset'
 import { autoDetectTs, autoDetectVue } from './utils'
 
 interface Context {
   files: string[]
+  filesStylistic: string[]
   enableTs: boolean
   enableVue: boolean
   enableJson: boolean
@@ -47,6 +48,14 @@ function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigI
       ? enableVue ? [...GLOB_TS, GLOB_VUE] : [...GLOB_TS]
       : enableVue ? [...GLOB_JS, GLOB_VUE] : [...GLOB_JS]
 
+  const filesStylistic = [...files]
+
+  if (enableJson)
+    filesStylistic.push(GLOB_JSON)
+
+  if (enableYml)
+    filesStylistic.push(GLOB_YML)
+
   const tsOptions
     = !enableTs
       ? {}
@@ -73,6 +82,7 @@ function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigI
 
   const ctx: Context = {
     files,
+    filesStylistic,
     enableTs,
     enableVue,
     enableJson,

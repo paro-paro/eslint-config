@@ -52,12 +52,12 @@ const SUPPORTED_GLOBALS = {
 export function install(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     files,
+    filesStylistic,
     enableTs,
     enableVue,
     enableJson,
     enableYml,
     enableMarkdown,
-    enableStylistic,
     enableGlobals,
     enableRenameRules,
     tsOptions,
@@ -88,7 +88,7 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
   /* eslint-disable-next-line eslint-comments/disable-enable-pair */
   /* eslint-disable perfectionist/sort-objects */
   const stylistic: FlatESLintConfigItemExtend = {
-    files: [...files, GLOB_JSON, GLOB_YML],
+    files: filesStylistic,
     name: 'config:install:stylistic',
     plugins: {
       [enableRenameRules ? 'stylistic' : '@stylistic']: pluginStylistic,
@@ -184,13 +184,12 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
     processor: 'markdown/markdown',
   }
 
+  config.push(stylistic)
+
   if (enableTs)
     config.push(ts)
   else
     config.push(js)
-
-  if (enableStylistic)
-    config.push(stylistic)
 
   if (enableVue)
     config.push(vue)

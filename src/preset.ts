@@ -42,10 +42,12 @@ export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
   if (ignoresOptions)
     config.push(ignores(ignoresOptions))
 
-  config.push(
-    ...install(ctx),
-    ...javascript(ctx),
-  )
+  config.push(...install(ctx))
+
+  if (enableStylistic)
+    config.push(...stylistic(ctx))
+
+  config.push(...javascript(ctx))
 
   if (enableTs)
     config.push(...typescript(ctx))
@@ -64,9 +66,6 @@ export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
 
   if (enableSort)
     config.push(...sort(ctx))
-
-  if (enableStylistic)
-    config.push(...stylistic(ctx))
 
   if (enableVue)
     config.push(...vue(ctx))

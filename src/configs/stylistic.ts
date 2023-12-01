@@ -1,12 +1,11 @@
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
-import { GLOB_JSON, GLOB_YML } from '../globs'
 import { pluginStylistic } from '../plugins'
 
 /* eslint-disable perfectionist/sort-objects */
 export function stylistic(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
-    files,
+    filesStylistic,
     enableRenameRules,
     stylisticOptions,
   } = ctx
@@ -30,7 +29,7 @@ export function stylistic(ctx: Context): FlatESLintConfigItemExtend[] {
 
   return [
     {
-      files: [...files, GLOB_JSON, GLOB_YML],
+      files: filesStylistic,
       name: 'config:rules:stylistic',
 
       /* eslint-enable perfectionist/sort-objects */
