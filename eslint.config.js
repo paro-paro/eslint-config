@@ -32,7 +32,7 @@ export default paroparo(
       jsx: true,
       indent: 2,
       quotes: 'single',
-      semi: 'never',
+      semi: false,
     },
   },
 
