@@ -11,9 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/paro-paro/eslint-config.git"
   },
-  "bugs": {
-    "url": "https://github.com/paro-paro/eslint-config/issues"
-  },
+  "bugs": "https://github.com/paro-paro/eslint-config/issues",
   "keywords": [
     "eslint-config"
   ],

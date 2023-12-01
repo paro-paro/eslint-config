@@ -182,9 +182,9 @@ interface StylisticOptions {
   /**
    * Use semicolons at the end of statements.
    *
-   * @default 'never'
+   * @default false
    */
-  semi?: 'never' | 'always'
+  semi?: boolean
 }
 
 interface TsOptions {
