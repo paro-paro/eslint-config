@@ -14,7 +14,7 @@ interface ConfigOptions {
    *
    * @see https://github.com/antfu/eslint-config-flat-gitignore
    *
-   * @default true
+   * @default false
    */
   gitignore?: GitIgnoreOptions | boolean
 

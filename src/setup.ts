@@ -24,8 +24,8 @@ interface Context {
   enableRenameRules: boolean
   tsOptions: TsOptions
   stylisticOptions: StylisticOptions
-  ignoresOptions: false | IgnoresOptions
-  gitignoreOptions: false | GitIgnoreOptions
+  ignoresOptions: IgnoresOptions | false
+  gitignoreOptions: GitIgnoreOptions | false
 }
 
 function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigItem[]): FlatESLintConfigItem[] {
@@ -65,11 +65,11 @@ function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigI
         : {}
 
   const gitignoreOptions
-    = options.gitignore === false
-      ? false
+    = options.gitignore === true
+      ? {}
       : typeof options.gitignore === 'object'
         ? options.gitignore
-        : {}
+        : false
 
   const ctx: Context = {
     files,

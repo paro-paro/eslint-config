@@ -169,7 +169,7 @@ interface ConfigOptions {
 
 * Use the `ignores` option if you need to disable, extend or override the predefined set of [excluded globs](https://github.com/paro-paro/eslint-config/blob/main/src/globs.ts).
 
-* [eslint-config-flat-gitignore](https://github.com/antfu/eslint-config-flat-gitignore) package is supported through the `gitignore` option.
+* [eslint-config-flat-gitignore](https://github.com/antfu/eslint-config-flat-gitignore) package is supported through the `gitignore` option (disabled by default).
 
 * To enable type aware linting use the `tsOptions` object. The preset does not include any of these rules by default. Check [docs](https://typescript-eslint.io/linting/typed-linting/) for details.
 
