@@ -3,24 +3,19 @@ import type { FlatESLintConfigItemExtend } from '../types'
 import process from 'node:process'
 import globals from 'globals'
 import { GLOB_JSON, GLOB_MD, GLOB_VUE, GLOB_YML } from '../globs'
-import { parserJsonc, parserTs, parserVue, parserYml } from '../parsers'
 import {
   pluginAntfu,
   pluginComments,
   pluginImport,
   pluginJsdoc,
-  pluginJsonc,
-  pluginMarkdown,
   pluginNode,
   pluginPerfectionist,
   pluginSortExports,
   pluginStylistic,
-  pluginTs,
   pluginUnicorn,
   pluginUnusedImports,
-  pluginVue,
-  pluginYml,
 } from '../plugins'
+import { interopDefaultAsync } from '../utils'
 
 const LINTER_OPTIONS = {
   linterOptions: {
@@ -48,8 +43,23 @@ const SUPPORTED_GLOBALS = {
   },
 }
 
+const PLUGINS = {
+  plugins: {
+    'antfu': pluginAntfu,
+    'eslint-comments': pluginComments,
+    'import': pluginImport,
+    'jsdoc': pluginJsdoc,
+    'node': pluginNode,
+    'perfectionist': pluginPerfectionist,
+    'sort-exports': pluginSortExports,
+    'unicorn': pluginUnicorn,
+    'unused-imports': pluginUnusedImports,
+  },
+}
+
+/* eslint-disable-next-line eslint-comments/disable-enable-pair */
 /* eslint-disable perfectionist/sort-objects */
-export function install(ctx: Context): FlatESLintConfigItemExtend[] {
+export async function install(ctx: Context): Promise<FlatESLintConfigItemExtend[]> {
   const {
     files,
     filesStylistic,
@@ -63,145 +73,165 @@ export function install(ctx: Context): FlatESLintConfigItemExtend[] {
     tsOptions,
   } = ctx
 
-  const tsconfigPath = tsOptions.tsconfigPath
   const config: FlatESLintConfigItemExtend[] = []
+  const tsconfigPath = tsOptions.tsconfigPath
 
-  /* eslint-enable perfectionist/sort-objects */
-  const plugins = {
-    plugins: {
-      'antfu': pluginAntfu,
-      'eslint-comments': pluginComments,
-      'import': pluginImport,
-      'jsdoc': pluginJsdoc,
-      'node': pluginNode,
-      'perfectionist': pluginPerfectionist,
-      'sort-exports': pluginSortExports,
-      'unicorn': pluginUnicorn,
-      'unused-imports': pluginUnusedImports,
+  const prefixTs = enableRenameRules ? 'ts' : '@typescript-eslint'
+  const prefixStylistic = enableRenameRules ? 'stylistic' : '@stylistic'
 
-      ...enableTs && {
-        [enableRenameRules ? 'ts' : '@typescript-eslint']: pluginTs,
-      },
-    },
-  }
-
-  /* eslint-disable-next-line eslint-comments/disable-enable-pair */
-  /* eslint-disable perfectionist/sort-objects */
   const stylistic: FlatESLintConfigItemExtend = {
     files: filesStylistic,
     name: 'config:install:stylistic',
     plugins: {
-      [enableRenameRules ? 'stylistic' : '@stylistic']: pluginStylistic,
+      [prefixStylistic]: pluginStylistic,
     },
   }
 
-  const js: FlatESLintConfigItemExtend = {
-    files,
-    name: 'config:install:javascript',
-    ...LINTER_OPTIONS,
-    ...plugins,
+  if (!enableTs) {
+    config.push({
+      files,
+      name: 'config:install:javascript',
+      ...LINTER_OPTIONS,
+      ...PLUGINS,
 
-    languageOptions: {
-      // parser: 'espree', // default
-      ...ECMAVERSION_SOURCETYPE as any,
-      ...enableGlobals && SUPPORTED_GLOBALS,
+      languageOptions: {
+        ...ECMAVERSION_SOURCETYPE as any,
+        ...enableGlobals && SUPPORTED_GLOBALS,
 
-      parserOptions: {
-        ...ECMAVERSION_SOURCETYPE,
-        ...ECMAFEATURES,
-      },
-    },
-  }
-
-  const ts: FlatESLintConfigItemExtend = {
-    files,
-    name: 'config:install:typescript',
-    ...LINTER_OPTIONS,
-    ...plugins,
-
-    languageOptions: {
-      parser: parserTs,
-      ...ECMAVERSION_SOURCETYPE as any,
-      ...enableGlobals && SUPPORTED_GLOBALS,
-
-      parserOptions: {
-        ...ECMAVERSION_SOURCETYPE,
-        ...ECMAFEATURES,
-
-        // typescript-specific
-        extraFileExtensions: enableVue ? ['.vue'] : [],
-        ...tsconfigPath && {
-          project: tsconfigPath,
-          tsconfigRootDir: process.cwd(),
+        parserOptions: {
+          ...ECMAVERSION_SOURCETYPE,
+          ...ECMAFEATURES,
         },
       },
-    },
+    })
   }
 
-  const vue: FlatESLintConfigItemExtend = {
-    files: [GLOB_VUE],
-    name: 'config:install:vue',
-    ...LINTER_OPTIONS,
-    plugins: { vue: pluginVue },
-    processor: pluginVue.processors['.vue'],
+  if (enableTs) {
+    const [
+      pluginTs,
+      parserTs,
+    ] = await Promise.all([
+      interopDefaultAsync(import('@typescript-eslint/eslint-plugin')),
+      interopDefaultAsync(import('@typescript-eslint/parser')),
+    ])
 
-    languageOptions: {
-      parser: parserVue,
-      ...ECMAVERSION_SOURCETYPE as any,
-      ...enableGlobals && SUPPORTED_GLOBALS,
+    const plugins = Object.assign({}, PLUGINS.plugins, { [prefixTs]: pluginTs })
+    config.push({
+      files,
+      name: 'config:install:typescript',
+      ...LINTER_OPTIONS,
+      plugins: { ...plugins },
 
-      parserOptions: {
-        ...ECMAVERSION_SOURCETYPE,
-        ...ECMAFEATURES,
+      languageOptions: {
+        parser: parserTs,
+        ...ECMAVERSION_SOURCETYPE as any,
+        ...enableGlobals && SUPPORTED_GLOBALS,
 
-        // vue-specific
-        parser: {
-          js: enableTs ? parserTs : null, // espree if not ts
-          ts: enableTs ? parserTs : null,
+        parserOptions: {
+          ...ECMAVERSION_SOURCETYPE,
+          ...ECMAFEATURES,
+
+          // ts-specific
+          extraFileExtensions: enableVue ? ['.vue'] : [],
+          ...tsconfigPath && {
+            project: tsconfigPath,
+            tsconfigRootDir: process.cwd(),
+          },
         },
       },
-    },
+    })
   }
 
-  const json: FlatESLintConfigItemExtend = {
-    files: [GLOB_JSON],
-    name: 'config:install:jsonc',
-    plugins: { jsonc: pluginJsonc },
-    languageOptions: { parser: parserJsonc },
+  if (enableVue) {
+    let scriptBlockParser = null // when null, espree is used
+    if (enableTs)
+      scriptBlockParser = await interopDefaultAsync(import('@typescript-eslint/parser'))
+
+    const [
+      pluginVue,
+      parserVue,
+    ] = await Promise.all([
+      // @ts-expect-error: no types
+      interopDefaultAsync(import('eslint-plugin-vue')),
+      interopDefaultAsync(import('vue-eslint-parser')),
+    ])
+
+    config.push({
+      files: [GLOB_VUE],
+      name: 'config:install:vue',
+      ...LINTER_OPTIONS,
+      plugins: { vue: pluginVue },
+      processor: pluginVue.processors['.vue'],
+
+      languageOptions: {
+        parser: parserVue,
+        ...ECMAVERSION_SOURCETYPE as any,
+        ...enableGlobals && SUPPORTED_GLOBALS,
+
+        parserOptions: {
+          ...ECMAVERSION_SOURCETYPE,
+          ...ECMAFEATURES,
+
+          // vue-specific
+          parser: {
+            js: scriptBlockParser,
+            ts: scriptBlockParser,
+          },
+        },
+      },
+    })
   }
 
-  const yml: FlatESLintConfigItemExtend = {
-    files: [GLOB_YML],
-    name: 'config:install:yml',
-    plugins: { yml: pluginYml },
-    languageOptions: { parser: parserYml },
+  if (enableJson) {
+    const [
+      pluginJsonc,
+      parserJsonc,
+    ] = await Promise.all([
+      interopDefaultAsync(import('eslint-plugin-jsonc')),
+      interopDefaultAsync(import('jsonc-eslint-parser')),
+    ])
+
+    config.push({
+      files: [GLOB_JSON],
+      name: 'config:install:jsonc',
+      plugins: {
+        jsonc: pluginJsonc,
+      },
+      languageOptions: {
+        parser: parserJsonc,
+      },
+    })
   }
 
-  const markdown: FlatESLintConfigItemExtend = {
-    files: [GLOB_MD],
-    name: 'config:install:markdown',
-    plugins: { markdown: pluginMarkdown },
-    processor: 'markdown/markdown',
+  if (enableYml) {
+    const [
+      pluginYml,
+      parserYml,
+    ] = await Promise.all([
+      interopDefaultAsync(import('eslint-plugin-yml')),
+      interopDefaultAsync(import('yaml-eslint-parser')),
+    ])
+
+    config.push({
+      files: [GLOB_YML],
+      name: 'config:install:yml',
+      plugins: { yml: pluginYml },
+      languageOptions: { parser: parserYml },
+    })
+  }
+
+  if (enableMarkdown) {
+    // @ts-expect-error: no types
+    const pluginMarkdown = await interopDefaultAsync(import('eslint-plugin-markdown'))
+
+    config.push({
+      files: [GLOB_MD],
+      name: 'config:install:markdown',
+      plugins: { markdown: pluginMarkdown },
+      processor: 'markdown/markdown',
+    })
   }
 
   config.push(stylistic)
-
-  if (enableTs)
-    config.push(ts)
-  else
-    config.push(js)
-
-  if (enableVue)
-    config.push(vue)
-
-  if (enableJson)
-    config.push(json)
-
-  if (enableYml)
-    config.push(yml)
-
-  if (enableMarkdown)
-    config.push(markdown)
-
   return config
 }

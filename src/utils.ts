@@ -1,7 +1,7 @@
 import { isPackageExists } from 'local-pkg'
 
 export function autoDetectTs(): boolean {
-  return ['typescript'].some(i => isPackageExists(i))
+  return isPackageExists('typescript')
 }
 
 export function autoDetectVue(): boolean {
@@ -10,4 +10,9 @@ export function autoDetectVue(): boolean {
 
 export function interopDefault(m: any) {
   return m.default || m
+}
+
+export async function interopDefaultAsync<T>(m: Promise<T>): Promise<T extends { default: infer U } ? U : T> {
+  const resolved = await m
+  return (resolved as any).default || resolved
 }

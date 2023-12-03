@@ -1,7 +1,6 @@
 import type { Context } from '../setup'
 import type { FlatESLintConfigItemExtend } from '../types'
 import { GLOB_VUE } from '../globs'
-import { pluginVue } from '../plugins'
 
 export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
@@ -18,10 +17,10 @@ export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
       files: [GLOB_VUE],
       name: 'config:rules:vue',
       rules: {
-        ...pluginVue.configs.base.rules,
-        ...pluginVue.configs['vue3-essential'].rules,
-        ...pluginVue.configs['vue3-strongly-recommended'].rules,
-        ...pluginVue.configs['vue3-recommended'].rules,
+        // ...pluginVue.configs.base.rules,
+        // ...pluginVue.configs['vue3-essential'].rules,
+        // ...pluginVue.configs['vue3-strongly-recommended'].rules,
+        // ...pluginVue.configs['vue3-recommended'].rules,
 
         'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
         'vue/component-name-in-template-casing': ['error', 'PascalCase'],

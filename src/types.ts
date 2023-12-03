@@ -183,6 +183,7 @@ interface StylisticOptions {
    * Use semicolons at the end of statements.
    *
    * @default false
+   *
    */
   semi?: boolean
 }

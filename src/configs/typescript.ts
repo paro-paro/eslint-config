@@ -5,13 +5,10 @@ import type { FlatESLintConfigItemExtend } from '../types'
 export function typescript(ctx: Context): FlatESLintConfigItemExtend[] {
   const {
     files,
-    tsOptions,
     enableRenameRules,
   } = ctx
 
-  const tsconfigPath = tsOptions.tsconfigPath
   const prefix = enableRenameRules ? 'ts' : '@typescript-eslint'
-
   return [
     {
       files,
@@ -19,28 +16,28 @@ export function typescript(ctx: Context): FlatESLintConfigItemExtend[] {
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {
-        'constructor-super': 'off',
-        'getter-return': 'off',
-        'no-array-constructor': 'off',
-        'no-const-assign': 'off',
-        'no-dupe-args': 'off',
-        'no-dupe-class-members': 'off',
-        'no-dupe-keys': 'off',
-        'no-func-assign': 'off',
-        'no-import-assign': 'off',
-        'no-invalid-this': 'off',
-        'no-loss-of-precision': 'off',
-        'no-new-symbol': 'off',
-        'no-obj-calls': 'off',
-        'no-redeclare': 'off',
-        'no-setter-return': 'off',
-        'no-this-before-super': 'off',
-        'no-unreachable': 'off',
-        'no-unsafe-negation': 'off',
-        'no-use-before-define': 'off',
-        'no-useless-constructor': 'off',
-
-        ...tsconfigPath && {},
+        ...{
+          'constructor-super': 'off',
+          'getter-return': 'off',
+          'no-array-constructor': 'off',
+          'no-const-assign': 'off',
+          'no-dupe-args': 'off',
+          'no-dupe-class-members': 'off',
+          'no-dupe-keys': 'off',
+          'no-func-assign': 'off',
+          'no-import-assign': 'off',
+          'no-invalid-this': 'off',
+          'no-loss-of-precision': 'off',
+          'no-new-symbol': 'off',
+          'no-obj-calls': 'off',
+          'no-redeclare': 'off',
+          'no-setter-return': 'off',
+          'no-this-before-super': 'off',
+          'no-unreachable': 'off',
+          'no-unsafe-negation': 'off',
+          'no-use-before-define': 'off',
+          'no-useless-constructor': 'off',
+        },
 
         /* strict rules */
         [`${prefix}/ban-ts-comment`]: ['error', { 'ts-ignore': 'allow-with-description' }],
@@ -74,9 +71,6 @@ export function typescript(ctx: Context): FlatESLintConfigItemExtend[] {
         [`${prefix}/prefer-literal-enum-member`]: 'error',
         [`${prefix}/prefer-ts-expect-error`]: 'error',
         [`${prefix}/unified-signatures`]: 'error',
-
-        /* type aware rules */
-        ...tsconfigPath && {},
       },
     },
   ]

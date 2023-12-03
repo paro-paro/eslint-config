@@ -21,9 +21,9 @@ import {
   yml,
 } from './configs'
 
-export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
+export async function getPreset(ctx: Context): Promise<FlatESLintConfigItemExtend[]> {
   const config: FlatESLintConfigItemExtend[] = []
-
+  const installation = await install(ctx)
   const {
     gitignoreOptions,
     ignoresOptions,
@@ -42,12 +42,10 @@ export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
   if (ignoresOptions)
     config.push(ignores(ignoresOptions))
 
-  config.push(...install(ctx))
-
-  if (enableStylistic)
-    config.push(...stylistic(ctx))
-
-  config.push(...javascript(ctx))
+  config.push(
+    ...installation,
+    ...javascript(ctx),
+  )
 
   if (enableTs)
     config.push(...typescript(ctx))
@@ -67,6 +65,9 @@ export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
   if (enableSort)
     config.push(...sort(ctx))
 
+  if (enableStylistic)
+    config.push(...stylistic(ctx))
+
   if (enableVue)
     config.push(...vue(ctx))
 
@@ -77,6 +78,5 @@ export function getPreset(ctx: Context): FlatESLintConfigItemExtend[] {
     config.push(...yml(ctx))
 
   config.push(...overrides(ctx))
-
   return config
 }

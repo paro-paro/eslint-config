@@ -1,11 +1,4 @@
-import type {
-  ConfigOptions,
-  FlatESLintConfigItem,
-  GitIgnoreOptions,
-  IgnoresOptions,
-  StylisticOptions,
-  TsOptions,
-} from './types'
+import type { ConfigOptions, FlatESLintConfigItem, GitIgnoreOptions, IgnoresOptions, StylisticOptions, TsOptions } from './types'
 import { GLOB_JS, GLOB_JSON, GLOB_TS, GLOB_VUE, GLOB_YML } from './globs'
 import { getPreset } from './preset'
 import { autoDetectTs, autoDetectVue } from './utils'
@@ -29,18 +22,18 @@ interface Context {
   gitignoreOptions: GitIgnoreOptions | false
 }
 
-function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigItem[]): FlatESLintConfigItem[] {
+async function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigItem[]): Promise<FlatESLintConfigItem[]> {
   const {
+    yml: enableYml = true,
+    json: enableJson = true,
+    sort: enableSort = true,
+    jsdoc: enableJsdoc = true,
+    globals: enableGlobals = true,
+    markdown: enableMarkdown = true,
+    stylistic: enableStylistic = true,
+    renameRules: enableRenameRules = true,
     ts: enableTs = autoDetectTs(),
     vue: enableVue = autoDetectVue(),
-    json: enableJson = true,
-    yml: enableYml = true,
-    markdown: enableMarkdown = true,
-    jsdoc: enableJsdoc = true,
-    sort: enableSort = true,
-    stylistic: enableStylistic = true,
-    globals: enableGlobals = true,
-    renameRules: enableRenameRules = true,
   } = options
 
   const files
@@ -99,9 +92,8 @@ function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigI
     gitignoreOptions,
   }
 
-  const preset = getPreset(ctx)
+  const preset = await getPreset(ctx)
   preset.push(...userConfigs)
-
   return preset
 }
 
