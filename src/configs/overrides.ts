@@ -16,6 +16,7 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
 
   const {
     enableTs,
+    enableSort,
     enableMarkdown,
     enableStylistic,
     enableRenameRules,
@@ -74,11 +75,6 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
 
     rules: {
       ...{
-        'unused-imports/no-unused-imports': 'off',
-        'unused-imports/no-unused-vars': 'off',
-      },
-
-      ...{
         'no-alert': 'off',
         'no-console': 'off',
         'no-undef': 'off',
@@ -87,9 +83,17 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
         'unicode-bom': 'off',
       },
 
+      ...enableTs && {
+        [`${prefixTs}/consistent-type-imports`]: 'off',
+        [`${prefixTs}/no-namespace`]: 'off',
+        [`${prefixTs}/no-require-imports`]: 'off',
+        [`${prefixTs}/no-use-before-define`]: 'off',
+        [`${prefixTs}/no-var-requires`]: 'off',
+      },
+
       ...{
-        'node/prefer-global/buffer': 'off',
-        'node/prefer-global/process': 'off',
+        'unused-imports/no-unused-imports': 'off',
+        'unused-imports/no-unused-vars': 'off',
       },
 
       ...{
@@ -97,12 +101,15 @@ export function overrides(ctx: Context): FlatESLintConfigItemExtend[] {
         'antfu/no-ts-export-equal': 'off',
       },
 
-      ...enableTs && {
-        [`${prefixTs}/consistent-type-imports`]: 'off',
-        [`${prefixTs}/no-namespace`]: 'off',
-        [`${prefixTs}/no-require-imports`]: 'off',
-        [`${prefixTs}/no-use-before-define`]: 'off',
-        [`${prefixTs}/no-var-requires`]: 'off',
+      ...{
+        'node/prefer-global/buffer': 'off',
+        'node/prefer-global/process': 'off',
+      },
+
+      ...enableSort && {
+        'perfectionist/sort-imports': 'off',
+        'perfectionist/sort-named-imports': 'off',
+        'sort-exports/sort-exports': 'off',
       },
 
       ...enableStylistic && {
