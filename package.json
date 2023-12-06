@@ -4,7 +4,7 @@
   "version": "1.2.1",
   "packageManager": "pnpm@8.11.0",
   "description": "ESLint config preset by @paro-paro",
-  "author": "Antonio Parody <aparodyg@gmail.com>",
+  "author": "Antonio PG <aparodyg@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/paro-paro/eslint-config#readme",
   "repository": {
