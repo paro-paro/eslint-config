@@ -25,7 +25,7 @@ export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
 
         // vue3-essential
         ...{
-          'vue/multi-word-component-names': 'error',
+          // 'vue/multi-word-component-names': 'error',
           'vue/no-arrow-functions-in-watch': 'error',
           'vue/no-async-in-computed-properties': 'error',
           'vue/no-child-content': 'error',
@@ -118,7 +118,7 @@ export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
           'vue/html-indent': ['error', indent],
           'vue/html-quotes': ['error', 'double'],
           'vue/html-self-closing': 'warn',
-          'vue/max-attributes-per-line': 'warn',
+          // 'vue/max-attributes-per-line': 'warn',
           'vue/multiline-html-element-content-newline': 'warn',
           'vue/mustache-interpolation-spacing': 'warn',
           'vue/no-multi-spaces': 'warn',
