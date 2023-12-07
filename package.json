@@ -12,9 +12,7 @@
     "url": "git+https://github.com/paro-paro/eslint-config.git"
   },
   "bugs": "https://github.com/paro-paro/eslint-config/issues",
-  "keywords": [
-    "eslint-config"
-  ],
+  "keywords": ["eslint", "eslint-config"],
   "exports": {
     ".": {
       "import": "./dist/index.js",
