@@ -216,7 +216,7 @@ All credit to his outstanding and inspirational work.
 
 * [@paro-paro/vscode](https://github.com/paro-paro/vscode) - My VS Code setup.
 
-* [@paro-paro/paro-paro-solarized-dark](https://github.com/paro-paro/paro-paro-solarized-dark) - My VS Code theme.
+* [@paro-paro/vscode-themes](https://github.com/paro-paro/vscode-themes) - My VS Code themes.
 
 ## License
 
