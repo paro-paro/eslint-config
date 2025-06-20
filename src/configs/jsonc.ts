@@ -1,9 +1,9 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 import { GLOB_JSON } from '../globs'
 
-export function jsonc(ctx: Context): FlatESLintConfigItemExtend[] {
-  const config: FlatESLintConfigItemExtend[] = []
+export function jsonc(ctx: Context): Config[] {
+  const config: Config[] = []
 
   const {
     enableSort,
@@ -15,7 +15,7 @@ export function jsonc(ctx: Context): FlatESLintConfigItemExtend[] {
     indent = 2,
   } = stylisticOptions
 
-  const json: FlatESLintConfigItemExtend = {
+  const json: Config = {
     files: [GLOB_JSON],
     name: 'config:rules:jsonc',
     rules: {
@@ -61,7 +61,7 @@ export function jsonc(ctx: Context): FlatESLintConfigItemExtend[] {
     },
   }
 
-  const sortPackageJson: FlatESLintConfigItemExtend = {
+  const sortPackageJson: Config = {
     files: ['**/package.json'],
     name: 'config:rules:jsonc:sort:package.json',
     rules: {
@@ -147,7 +147,7 @@ export function jsonc(ctx: Context): FlatESLintConfigItemExtend[] {
     },
   }
 
-  const sortTsConfig: FlatESLintConfigItemExtend = {
+  const sortTsConfig: Config = {
     files: ['**/tsconfig.json', '**/tsconfig.*.json'],
     name: 'config:rules:jsonc:sort:tsconfig.json',
     rules: {

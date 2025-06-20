@@ -1,4 +1,4 @@
-import type { ConfigOptions, FlatESLintConfigItem, GitIgnoreOptions, IgnoresOptions, StylisticOptions, TsOptions } from './types'
+import type { Config, ConfigOptions, GitIgnoreOptions, IgnoresOptions, StylisticOptions, TsOptions } from './types'
 import { GLOB_JS, GLOB_JSON, GLOB_TS, GLOB_VUE, GLOB_YML } from './globs'
 import { getPreset } from './preset'
 import { autoDetectTs, autoDetectVue } from './utils'
@@ -22,7 +22,7 @@ interface Context {
   gitignoreOptions: GitIgnoreOptions | false
 }
 
-async function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintConfigItem[]): Promise<FlatESLintConfigItem[]> {
+async function paroparo(options: ConfigOptions = {}, ...userConfigs: Config[]): Promise<Config[]> {
   const {
     yml: enableYml = true,
     json: enableJson = true,
@@ -98,4 +98,4 @@ async function paroparo(options: ConfigOptions = {}, ...userConfigs: FlatESLintC
 }
 
 export type { Context }
-export { paroparo }
+export default paroparo

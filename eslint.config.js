@@ -1,9 +1,9 @@
 // @ts-check
-import { paroparo } from './dist/index.js'
+import paroparo from './dist/index.js'
 
 export default paroparo(
   {
-    ts: true,
+    // ts: true,
     vue: true,
     json: true,
     yml: true,
@@ -15,13 +15,13 @@ export default paroparo(
     renameRules: true,
 
     ignores: {
-      globs: ['**/playground'],
+      globs: ['**/files'],
       override: false,
     },
 
     gitignore: {
-      files: '.eslintignore',
-      strict: false,
+      // files: '.eslintignore',
+      strict: true,
     },
 
     tsOptions: {

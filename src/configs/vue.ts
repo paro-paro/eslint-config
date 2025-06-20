@@ -1,8 +1,8 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 import { GLOB_VUE } from '../globs'
 
-export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
+export function vue(ctx: Context): Config[] {
   const {
     enableStylistic,
     stylisticOptions,
@@ -25,7 +25,7 @@ export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
 
         // vue3-essential
         ...{
-          // 'vue/multi-word-component-names': 'error',
+          // 'vue/multi-word-component-names': 'off',
           'vue/no-arrow-functions-in-watch': 'error',
           'vue/no-async-in-computed-properties': 'error',
           'vue/no-child-content': 'error',
@@ -81,7 +81,7 @@ export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
           'vue/require-toggle-inside-transition': 'error',
           'vue/require-v-for-key': 'error',
           'vue/require-valid-default-prop': 'error',
-          'vue/return-in-computed-property': 'error',
+          // 'vue/return-in-computed-property': 'off',
           'vue/return-in-emits-validator': 'error',
           'vue/use-v-on-exact': 'error',
           'vue/valid-attribute-name': 'error',
@@ -111,7 +111,10 @@ export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
         ...{
           'vue/attribute-hyphenation': 'warn',
           'vue/component-definition-name-casing': 'warn',
-          'vue/first-attribute-linebreak': 'warn',
+          'vue/first-attribute-linebreak': ['error', {
+            multiline: 'below',
+            singleline: 'beside',
+          }],
           'vue/html-closing-bracket-newline': 'warn',
           'vue/html-closing-bracket-spacing': 'warn',
           'vue/html-end-tags': 'warn',
@@ -126,7 +129,7 @@ export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
           'vue/no-template-shadow': 'warn',
           'vue/one-component-per-file': 'warn',
           'vue/prop-name-casing': ['error', 'camelCase'],
-          'vue/require-default-prop': 'warn',
+          // 'vue/require-default-prop': 'off',
           'vue/require-explicit-emits': 'warn',
           'vue/require-prop-types': 'warn',
           'vue/singleline-html-element-content-newline': 'warn',
@@ -138,8 +141,27 @@ export function vue(ctx: Context): FlatESLintConfigItemExtend[] {
 
         // vue3-recommended
         ...{
-          'vue/attributes-order': 'warn',
-          'vue/component-tags-order': 'warn',
+          'vue/attributes-order': ['error', {
+            alphabetical: true,
+            order: [
+              'DEFINITION', // is
+              'GLOBAL', // id
+              'CONTENT', // v-text / v-html
+              'SLOT', // v-slot
+              'CONDITIONALS', // v-if / v-else / v-else-if / v-show / v-cloak
+              'TWO_WAY_BINDING', // v-model
+              'OTHER_DIRECTIVES', // custom directives
+              'LIST_RENDERING', // v-for
+              'UNIQUE', // key / ref
+              // 'OTHER_ATTR', // v-bind
+              'ATTR_SHORTHAND_BOOL',
+              'ATTR_STATIC',
+              'ATTR_DYNAMIC',
+              'EVENTS', // v-on
+              'RENDER_MODIFIERS', // v-pre - v-once
+            ],
+          }],
+          // 'vue/component-tags-order': 'warn',
           'vue/no-lone-template': 'warn',
           'vue/no-multiple-slot-args': 'warn',
           'vue/no-v-html': 'warn',

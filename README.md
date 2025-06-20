@@ -39,7 +39,7 @@ pnpm add -D @paro-paro/eslint-config
 `eslint.config.js`
 
 ```js
-import { paroparo } from '@paro-paro/eslint-config'
+import paroparo from '@paro-paro/eslint-config'
 
 export default paroparo()
 ```
@@ -186,13 +186,12 @@ interface ConfigOptions {
 | [eslint-config-flat-gitignore](https://github.com/antfu/eslint-config-flat-gitignore)       | - |
 | [eslint-plugin-antfu](https://github.com/antfu/eslint-plugin-antfu)                         | `antfu/*` |
 | [eslint-plugin-eslint-comments](https://mysticatea.github.io/eslint-plugin-eslint-comments) | `eslint-comments/*` |
-| [eslint-plugin-i](https://github.com/un-es/eslint-plugin-i)                                 | `import/*` |
+| [eslint-plugin-import-lite](https://github.com/9romise/eslint-plugin-import-lite)           | `import/*` |
 | [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc)                         | `jsdoc/*` |
 | [eslint-plugin-jsonc](https://github.com/ota-meshi/eslint-plugin-jsonc)                     | `jsonc/*` |
 | [eslint-plugin-markdown](https://github.com/eslint/eslint-plugin-markdown)                  | - |
 | [eslint-plugin-n](https://github.com/eslint-community/eslint-plugin-n )                     | `node/*` |
 | [eslint-plugin-perfectionist](https://eslint-plugin-perfectionist.azat.io)                  | `perfectionist/*` |
-| [eslint-plugin-sort-exports](https://github.com/jrdrg/eslint-plugin-sort-exports)           | `sort-exports/*` |
 | [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)              | `unicorn/*` |
 | [eslint-plugin-unused-imports](https://github.com/sweepline/eslint-plugin-unused-imports)   | `unused-imports/*` |
 | [eslint-plugin-vue](https://eslint.vuejs.org)                                               | `vue/*` |

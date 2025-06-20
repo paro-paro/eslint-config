@@ -1,12 +1,6 @@
 /* eslint perfectionist/sort-interfaces: ['error', { type: 'natural', order: 'asc' }] */
-import type { FlatESLintConfigItem } from 'eslint-define-config'
-
-interface FlatESLintConfigItemExtend extends FlatESLintConfigItem {
-  /**
-   * Custom name for each flat config object.
-   */
-  name?: string
-}
+import type { Linter } from 'eslint'
+import type { Rules } from './typegen'
 
 interface ConfigOptions {
   /**
@@ -199,10 +193,21 @@ interface TsOptions {
   tsconfigPath?: string | string[]
 }
 
+export type Config = Omit<
+  Linter.Config<Linter.RulesRecord & Rules>,
+  'plugins'
+> & {
+  // Relax plugins type limitation, as most of the plugins did not have correct type info yet.
+  /**
+   * An object containing a name-value mapping of plugin names to plugin objects. When `files` is specified, these plugins are only available to the matching files.
+   *
+   * @see [Using plugins in your configuration](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-plugins-in-your-configuration)
+   */
+  plugins?: Record<string, any>
+}
+
 export type {
   ConfigOptions,
-  FlatESLintConfigItem,
-  FlatESLintConfigItemExtend,
   GitIgnoreOptions,
   IgnoresOptions,
   StylisticOptions,

@@ -1,5 +1,5 @@
 import type { Context } from './setup'
-import type { FlatESLintConfigItemExtend } from './types'
+import type { Config } from './types'
 import gitignore from 'eslint-config-flat-gitignore'
 import {
   antfu,
@@ -21,8 +21,8 @@ import {
   yml,
 } from './configs'
 
-export async function getPreset(ctx: Context): Promise<FlatESLintConfigItemExtend[]> {
-  const config: FlatESLintConfigItemExtend[] = []
+export async function getPreset(ctx: Context): Promise<Config[]> {
+  const config: Config[] = []
   const installation = await install(ctx)
   const {
     gitignoreOptions,

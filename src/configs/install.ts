@@ -1,5 +1,5 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 import process from 'node:process'
 import globals from 'globals'
 import { GLOB_JSON, GLOB_MD, GLOB_VUE, GLOB_YML } from '../globs'
@@ -10,7 +10,6 @@ import {
   pluginJsdoc,
   pluginNode,
   pluginPerfectionist,
-  pluginSortExports,
   pluginStylistic,
   pluginUnicorn,
   pluginUnusedImports,
@@ -51,7 +50,6 @@ const PLUGINS = {
     'jsdoc': pluginJsdoc,
     'node': pluginNode,
     'perfectionist': pluginPerfectionist,
-    'sort-exports': pluginSortExports,
     'unicorn': pluginUnicorn,
     'unused-imports': pluginUnusedImports,
   },
@@ -59,7 +57,7 @@ const PLUGINS = {
 
 /* eslint-disable-next-line eslint-comments/disable-enable-pair */
 /* eslint-disable perfectionist/sort-objects */
-export async function install(ctx: Context): Promise<FlatESLintConfigItemExtend[]> {
+export async function install(ctx: Context): Promise<Config[]> {
   const {
     files,
     filesStylistic,
@@ -73,13 +71,13 @@ export async function install(ctx: Context): Promise<FlatESLintConfigItemExtend[
     tsOptions,
   } = ctx
 
-  const config: FlatESLintConfigItemExtend[] = []
+  const config: Config[] = []
   const tsconfigPath = tsOptions.tsconfigPath
 
   const prefixTs = enableRenameRules ? 'ts' : '@typescript-eslint'
   const prefixStylistic = enableRenameRules ? 'stylistic' : '@stylistic'
 
-  const stylistic: FlatESLintConfigItemExtend = {
+  const stylistic: Config = {
     files: filesStylistic,
     name: 'config:install:stylistic',
     plugins: {
@@ -151,7 +149,6 @@ export async function install(ctx: Context): Promise<FlatESLintConfigItemExtend[
       pluginVue,
       parserVue,
     ] = await Promise.all([
-      // @ts-expect-error: no types
       interopDefaultAsync(import('eslint-plugin-vue')),
       interopDefaultAsync(import('vue-eslint-parser')),
     ])

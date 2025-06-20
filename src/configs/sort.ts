@@ -1,8 +1,8 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 
 /* eslint-disable perfectionist/sort-objects */
-export function sort(ctx: Context): FlatESLintConfigItemExtend[] {
+export function sort(ctx: Context): Config[] {
   const {
     files,
     enableTs,
@@ -21,7 +21,7 @@ export function sort(ctx: Context): FlatESLintConfigItemExtend[] {
           'perfectionist/sort-imports': [
             'error',
             {
-              'groups': [
+              groups: [
                 'builtin-type',
                 'external-type',
                 ['internal-type', 'parent-type', 'sibling-type', 'index-type'],
@@ -30,10 +30,11 @@ export function sort(ctx: Context): FlatESLintConfigItemExtend[] {
                 ['internal', 'parent', 'sibling', 'index'],
                 ['side-effect', 'side-effect-style', 'style', 'object', 'unknown'],
               ],
-              'ignore-case': true,
-              'newlines-between': 'never',
-              'order': 'asc',
-              'type': 'natural',
+              ignoreCase: true,
+              newlinesBetween: 'never',
+              order: 'asc',
+              sortSideEffects: true,
+              type: 'natural',
             },
           ],
           'perfectionist/sort-named-imports': [
@@ -41,17 +42,6 @@ export function sort(ctx: Context): FlatESLintConfigItemExtend[] {
             {
               order: 'asc',
               type: 'natural',
-            },
-          ],
-        },
-
-        ...{
-          'sort-exports/sort-exports': [
-            'error',
-            {
-              ignoreCase: true,
-              sortDir: 'asc',
-              sortExportKindFirst: 'type',
             },
           ],
         },

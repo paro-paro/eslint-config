@@ -1,8 +1,8 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 
 /* eslint-disable perfectionist/sort-objects */
-export function comments(ctx: Context): FlatESLintConfigItemExtend[] {
+export function comments(ctx: Context): Config[] {
   const {
     files,
     enableTs,
@@ -18,9 +18,7 @@ export function comments(ctx: Context): FlatESLintConfigItemExtend[] {
       /* eslint-enable perfectionist/sort-objects */
       rules: {
         'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
-        'eslint-comments/no-aggregating-enable': 'error',
-        'eslint-comments/no-duplicate-disable': 'error',
-        'eslint-comments/no-unlimited-disable': 'error',
+        'eslint-comments/no-unlimited-disable': 'off',
         'eslint-comments/no-unused-disable': 'error',
         'eslint-comments/no-unused-enable': 'error',
       },
