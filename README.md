@@ -32,7 +32,7 @@ Use your favorite package manager.
 pnpm add -D @paro-paro/eslint-config
 ``` 
 
-> Requires `eslint >= 8.21.0`
+> Requires `eslint >= 9.5.0`
 
 ## Usage
 
@@ -51,19 +51,17 @@ And that's it!
 Even though is **highly discouraged**, you can use CommonJS as well.
 
 ```js
-const { paroparo } = require('@paro-paro/eslint-config')
+const paroparo = require('@paro-paro/eslint-config')
 
 module.exports = paroparo()
 ```
-
-> **Note:** `ts/no-var-requires` and `ts/no-require-imports` errors are thrown when using CommonJS syntax.
 
 ### Configuration
 
 Make sure you read the ESLint flat config [documentation](https://eslint.org/docs/latest/use/configure/configuration-files-new) first.
 
 ```js
-import { paroparo } from '@paro-paro/eslint-config'
+import paroparo from '@paro-paro/eslint-config'
 
 export default paroparo(
   {
@@ -96,7 +94,7 @@ Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?it
 ```json
 {
   "prettier.enable": false,
-  "eslint.experimental.useFlatConfig": true,
+  "eslint.useFlatConfig": true,
   "eslint.validate": ["typescript", "json"]
 }
 ```
@@ -169,7 +167,7 @@ interface ConfigOptions {
 
 * Use the `ignores` option if you need to disable, extend or override the predefined set of [excluded globs](https://github.com/paro-paro/eslint-config/blob/main/src/globs.ts).
 
-* [eslint-config-flat-gitignore](https://github.com/antfu/eslint-config-flat-gitignore) package is supported through the `gitignore` option (disabled by default).
+* [eslint-config-flat-gitignore](https://github.com/antfu/eslint-config-flat-gitignore) package is supported through the `gitignore` option (enabled by default).
 
 * To enable type aware linting use the `tsOptions` object. The preset does not include any of these rules by default. Check [docs](https://typescript-eslint.io/linting/typed-linting/) for details.
 

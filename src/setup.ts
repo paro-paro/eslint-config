@@ -67,11 +67,11 @@ async function paroparo(options: ConfigOptions = {}, ...userConfigs: Config[]): 
         : {}
 
   const gitignoreOptions
-    = options.gitignore === true
-      ? {}
+    = options.gitignore === false
+      ? false
       : typeof options.gitignore === 'object'
         ? options.gitignore
-        : false
+        : {}
 
   const ctx: Context = {
     files,
