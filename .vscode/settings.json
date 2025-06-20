@@ -1,12 +1,6 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "prettier.enable": false,
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "never"
-  },
-  "eslint.enable": true,
   "eslint.useFlatConfig": true,
   "eslint.validate": [
     "javascript",
