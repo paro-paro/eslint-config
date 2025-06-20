@@ -1,9 +1,9 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 import { pluginStylistic } from '../plugins'
 
 /* eslint-disable perfectionist/sort-objects */
-export function stylistic(ctx: Context): FlatESLintConfigItemExtend[] {
+export function stylistic(ctx: Context): Config[] {
   const {
     filesStylistic,
     enableRenameRules,

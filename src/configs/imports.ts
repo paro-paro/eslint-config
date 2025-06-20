@@ -1,8 +1,8 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 
 /* eslint-disable perfectionist/sort-objects */
-export function imports(ctx: Context): FlatESLintConfigItemExtend[] {
+export function imports(ctx: Context): Config[] {
   const {
     files,
     enableTs,
@@ -22,8 +22,6 @@ export function imports(ctx: Context): FlatESLintConfigItemExtend[] {
         'import/no-duplicates': 'error',
         'import/no-mutable-exports': 'error',
         'import/no-named-default': 'error',
-        'import/no-self-import': 'error',
-        'import/no-webpack-loader-syntax': 'error',
 
         ...enableStylistic && {
           'import/newline-after-import': ['error', { considerComments: true, count: 1 }],

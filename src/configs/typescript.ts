@@ -1,8 +1,8 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 
 /* eslint-disable perfectionist/sort-objects */
-export function typescript(ctx: Context): FlatESLintConfigItemExtend[] {
+export function typescript(ctx: Context): Config[] {
   const {
     files,
     enableRenameRules,
@@ -28,7 +28,6 @@ export function typescript(ctx: Context): FlatESLintConfigItemExtend[] {
           'no-import-assign': 'off',
           'no-invalid-this': 'off',
           'no-loss-of-precision': 'off',
-          'no-new-symbol': 'off',
           'no-obj-calls': 'off',
           'no-redeclare': 'off',
           'no-setter-return': 'off',
@@ -40,8 +39,7 @@ export function typescript(ctx: Context): FlatESLintConfigItemExtend[] {
         },
 
         /* strict rules */
-        [`${prefix}/ban-ts-comment`]: ['error', { 'ts-ignore': 'allow-with-description' }],
-        [`${prefix}/ban-types`]: ['error'],
+        [`${prefix}/ban-ts-comment`]: ['off'],
         [`${prefix}/consistent-type-assertions`]: ['error', { assertionStyle: 'as', objectLiteralTypeAssertions: 'allow-as-parameter' }],
         [`${prefix}/consistent-type-definitions`]: ['error', 'interface'],
         [`${prefix}/consistent-type-imports`]: ['error', { disallowTypeAnnotations: false, prefer: 'type-imports' }],
@@ -54,7 +52,6 @@ export function typescript(ctx: Context): FlatESLintConfigItemExtend[] {
         [`${prefix}/no-import-type-side-effects`]: 'error',
         [`${prefix}/no-invalid-this`]: 'error',
         [`${prefix}/no-invalid-void-type`]: 'error',
-        [`${prefix}/no-loss-of-precision`]: 'error',
         [`${prefix}/no-misused-new`]: 'error',
         [`${prefix}/no-namespace`]: 'error',
         [`${prefix}/no-non-null-asserted-nullish-coalescing`]: 'error',
@@ -66,10 +63,8 @@ export function typescript(ctx: Context): FlatESLintConfigItemExtend[] {
         [`${prefix}/no-unsafe-declaration-merging`]: 'error',
         [`${prefix}/no-use-before-define`]: ['error', { classes: false, functions: false, variables: true }],
         [`${prefix}/no-useless-constructor`]: 'error',
-        [`${prefix}/no-var-requires`]: 'error',
         [`${prefix}/prefer-as-const`]: 'error',
         [`${prefix}/prefer-literal-enum-member`]: 'error',
-        [`${prefix}/prefer-ts-expect-error`]: 'error',
         [`${prefix}/unified-signatures`]: 'error',
       },
     },

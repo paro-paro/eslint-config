@@ -1,8 +1,8 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 
 /* eslint-disable perfectionist/sort-objects */
-export function unicorn(ctx: Context): FlatESLintConfigItemExtend[] {
+export function unicorn(ctx: Context): Config[] {
   const {
     files,
     enableTs,
@@ -11,17 +11,30 @@ export function unicorn(ctx: Context): FlatESLintConfigItemExtend[] {
   return [
     {
       files,
-      name: enableTs ? 'config:rules:typescript:unicorn' : 'config:rules:javascript:unicorn',
+      name: enableTs
+        ? 'config:rules:typescript:unicorn'
+        : 'config:rules:javascript:unicorn',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {
-        'unicorn/better-regex': 'error',
-        'unicorn/catch-error-name': 'error',
+        'unicorn/catch-error-name': ['error', { name: 'err' }],
+        'unicorn/consistent-date-clone': 'error',
+        'unicorn/consistent-empty-array-spread': 'error',
+        'unicorn/consistent-existence-index-check': 'error',
         'unicorn/custom-error-definition': 'error',
         'unicorn/error-message': 'error',
         'unicorn/escape-case': 'error',
         'unicorn/explicit-length-check': 'error',
-        'unicorn/filename-case': ['error', { cases: { kebabCase: true, pascalCase: true }, ignore: [/^[A-Z]+\..*$/] }],
+        'unicorn/filename-case': [
+          'error',
+          {
+            cases: {
+              kebabCase: true,
+              pascalCase: true,
+            },
+            ignore: [/^[A-Z]+\..*$/, /import_map\.json/],
+          },
+        ],
         'unicorn/new-for-builtins': 'error',
         'unicorn/no-array-callback-reference': 'error',
         'unicorn/no-array-method-this-argument': 'error',
@@ -66,7 +79,7 @@ export function unicorn(ctx: Context): FlatESLintConfigItemExtend[] {
         'unicorn/prefer-string-slice': 'error',
         'unicorn/prefer-string-starts-ends-with': 'error',
         'unicorn/prefer-string-trim-start-end': 'error',
-        'unicorn/prefer-top-level-await': 'error',
+        // 'unicorn/prefer-top-level-await': 'error',
         'unicorn/prefer-type-error': 'error',
         'unicorn/throw-new-error': 'error',
       },

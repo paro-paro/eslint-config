@@ -1,8 +1,8 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 import { GLOB_YML } from '../globs'
 
-export function yml(ctx: Context): FlatESLintConfigItemExtend[] {
+export function yml(ctx: Context): Config[] {
   const {
     enableStylistic,
     stylisticOptions,

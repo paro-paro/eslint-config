@@ -1,4 +1,3 @@
-/* eslint-disable sort-exports/sort-exports */
 export const GLOB_JS = ['**/*.?([cm])js?(x)']
 export const GLOB_TS = ['**/*.?([cm])ts?(x)', ...GLOB_JS]
 

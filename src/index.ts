@@ -1,2 +1,2 @@
 export type * from './types'
-export { paroparo } from './setup'
+export { default } from './setup'

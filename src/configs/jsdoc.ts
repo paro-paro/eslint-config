@@ -1,8 +1,8 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 
 /* eslint-disable perfectionist/sort-objects */
-export function jsdoc(ctx: Context): FlatESLintConfigItemExtend[] {
+export function jsdoc(ctx: Context): Config[] {
   const {
     files,
     enableTs,

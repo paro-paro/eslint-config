@@ -1,8 +1,8 @@
 import type { Context } from '../setup'
-import type { FlatESLintConfigItemExtend } from '../types'
+import type { Config } from '../types'
 
 /* eslint-disable perfectionist/sort-objects */
-export function antfu(ctx: Context): FlatESLintConfigItemExtend[] {
+export function antfu(ctx: Context): Config[] {
   const {
     files,
     enableTs,
@@ -18,20 +18,13 @@ export function antfu(ctx: Context): FlatESLintConfigItemExtend[] {
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {
-        'antfu/no-import-node-modules-by-path': 'error',
-
         ...enableTs && {
-          'antfu/generic-spacing': 'error',
           'antfu/import-dedupe': 'error',
-          'antfu/named-tuple-spacing': 'error',
-          'antfu/no-cjs-exports': 'error',
-          'antfu/no-ts-export-equal': 'error',
         },
 
         ...enableStylistic && {
           'antfu/consistent-list-newline': 'error',
           'antfu/if-newline': 'error',
-          'antfu/top-level-function': 'error',
         },
       },
     },
