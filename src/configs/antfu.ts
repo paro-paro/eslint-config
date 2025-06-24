@@ -13,8 +13,8 @@ export function antfu(ctx: Context): Config[] {
     {
       files,
       name: enableTs
-        ? 'config:rules:typescript:antfu'
-        : 'config:rules:javascript:antfu',
+        ? 'paroparo:rules:typescript:antfu'
+        : 'paroparo:rules:javascript:antfu',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {

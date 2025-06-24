@@ -2,13 +2,26 @@
 import type { Linter } from 'eslint'
 import type { Rules } from './typegen'
 
+export type Config = Omit<
+  Linter.Config<Linter.RulesRecord & Rules>,
+  'plugins'
+> & {
+  // Relax plugins type limitation, as most of the plugins did not have correct type info yet.
+  /**
+   * An object containing a name-value mapping of plugin names to plugin objects. When `files` is specified, these plugins are only available to the matching files.
+   *
+   * @see [Using plugins in your configuration](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-plugins-in-your-configuration)
+   */
+  plugins?: Record<string, any>
+}
+
 interface ConfigOptions {
   /**
    * Support for `eslint-config-flat-gitignore` package.
    *
    * @see https://github.com/antfu/eslint-config-flat-gitignore
    *
-   * @default false
+   * @default true
    */
   gitignore?: GitIgnoreOptions | boolean
 
@@ -191,19 +204,6 @@ interface TsOptions {
    * @see https://typescript-eslint.io/linting/typed-linting/
    */
   tsconfigPath?: string | string[]
-}
-
-export type Config = Omit<
-  Linter.Config<Linter.RulesRecord & Rules>,
-  'plugins'
-> & {
-  // Relax plugins type limitation, as most of the plugins did not have correct type info yet.
-  /**
-   * An object containing a name-value mapping of plugin names to plugin objects. When `files` is specified, these plugins are only available to the matching files.
-   *
-   * @see [Using plugins in your configuration](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-plugins-in-your-configuration)
-   */
-  plugins?: Record<string, any>
 }
 
 export type {

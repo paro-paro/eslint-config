@@ -3,35 +3,30 @@ import paroparo from './dist/index.js'
 
 export default paroparo(
   {
-    // ts: true,
-    // vue: true,
-    // json: true,
-    // yml: true,
-    // markdown: true,
-    // jsdoc: true,
-    // sort: true,
-    // stylistic: true,
-    // globals: true,
-    // renameRules: true,
+    // ts: false,
+    // vue: false,
+    // json: false,
+    // yml: false,
+    // markdown: false,
+    // jsdoc: false,
+    // stylistic: false,
+    // sort: false,
 
-    ignores: false,
-    gitignore: true,
+    // globals: false,
+    // ignores: false,
+    // gitignore: false,
+    // renameRules: false,
 
-    // gitignore: {
-    //   // files: '.eslintignore',
-    //   strict: true,
+    // stylisticOptions: {
+    //   jsx: true,
+    //   indent: 2,
+    //   quotes: 'single',
+    //   semi: false,
     // },
 
-    tsOptions: {
-      // tsconfigPath: './tsconfig.json',
-    },
-
-    stylisticOptions: {
-      jsx: true,
-      indent: 2,
-      quotes: 'single',
-      semi: false,
-    },
+    // tsOptions: {
+    //   tsconfigPath: './tsconfig.json',
+    // },
   },
 
   {

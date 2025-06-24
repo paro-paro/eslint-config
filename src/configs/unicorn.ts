@@ -12,8 +12,8 @@ export function unicorn(ctx: Context): Config[] {
     {
       files,
       name: enableTs
-        ? 'config:rules:typescript:unicorn'
-        : 'config:rules:javascript:unicorn',
+        ? 'paroparo:rules:typescript:unicorn'
+        : 'paroparo:rules:javascript:unicorn',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {
@@ -38,11 +38,10 @@ export function unicorn(ctx: Context): Config[] {
         'unicorn/new-for-builtins': 'error',
         'unicorn/no-array-callback-reference': 'error',
         'unicorn/no-array-method-this-argument': 'error',
-        'unicorn/no-array-push-push': 'error',
         'unicorn/no-console-spaces': 'error',
         'unicorn/no-for-loop': 'error',
         'unicorn/no-hex-escape': 'error',
-        'unicorn/no-instanceof-array': 'error',
+        'unicorn/no-instanceof-builtins': 'error',
         'unicorn/no-invalid-remove-event-listener': 'error',
         'unicorn/no-lonely-if': 'error',
         'unicorn/no-new-array': 'error',
@@ -75,6 +74,7 @@ export function unicorn(ctx: Context): Config[] {
         'unicorn/prefer-query-selector': 'error',
         'unicorn/prefer-reflect-apply': 'error',
         'unicorn/prefer-regexp-test': 'error',
+        'unicorn/prefer-single-call': 'error',
         'unicorn/prefer-string-replace-all': 'error',
         'unicorn/prefer-string-slice': 'error',
         'unicorn/prefer-string-starts-ends-with': 'error',

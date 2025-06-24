@@ -12,8 +12,8 @@ export function node(ctx: Context): Config[] {
     {
       files,
       name: enableTs
-        ? 'config:rules:typescript:node'
-        : 'config:rules:javascript:node',
+        ? 'paroparo:rules:typescript:node'
+        : 'paroparo:rules:javascript:node',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {

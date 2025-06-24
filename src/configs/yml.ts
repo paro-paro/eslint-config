@@ -16,7 +16,7 @@ export function yml(ctx: Context): Config[] {
   return [
     {
       files: [GLOB_YML],
-      name: 'config:rules:yml',
+      name: 'paroparo:rules:yml',
       rules: {
         'yml/block-mapping': 'error',
         'yml/block-sequence': 'error',

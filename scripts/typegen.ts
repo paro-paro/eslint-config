@@ -1,3 +1,4 @@
+// work in progress...
 import { writeFile } from 'node:fs/promises'
 import { green } from 'ansis'
 import { flatConfigsToRulesDTS } from 'eslint-typegen/core'

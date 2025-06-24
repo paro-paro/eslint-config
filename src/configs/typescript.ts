@@ -12,7 +12,7 @@ export function typescript(ctx: Context): Config[] {
   return [
     {
       files,
-      name: 'config:rules:typescript:2',
+      name: 'paroparo:rules:typescript:2',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {

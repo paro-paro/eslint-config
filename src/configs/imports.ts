@@ -13,8 +13,8 @@ export function imports(ctx: Context): Config[] {
     {
       files,
       name: enableTs
-        ? 'config:rules:typescript:import'
-        : 'config:rules:javascript:import',
+        ? 'paroparo:rules:typescript:import'
+        : 'paroparo:rules:javascript:import',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {

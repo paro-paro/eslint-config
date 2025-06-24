@@ -17,7 +17,7 @@ export function jsonc(ctx: Context): Config[] {
 
   const json: Config = {
     files: [GLOB_JSON],
-    name: 'config:rules:jsonc',
+    name: 'paroparo:rules:jsonc',
     rules: {
       'jsonc/no-bigint-literals': 'error',
       'jsonc/no-binary-expression': 'error',
@@ -63,7 +63,7 @@ export function jsonc(ctx: Context): Config[] {
 
   const sortPackageJson: Config = {
     files: ['**/package.json'],
-    name: 'config:rules:jsonc:sort:package.json',
+    name: 'paroparo:rules:jsonc:sort:package.json',
     rules: {
       'jsonc/sort-array-values': [
         'error',
@@ -149,7 +149,7 @@ export function jsonc(ctx: Context): Config[] {
 
   const sortTsConfig: Config = {
     files: ['**/tsconfig.json', '**/tsconfig.*.json'],
-    name: 'config:rules:jsonc:sort:tsconfig.json',
+    name: 'paroparo:rules:jsonc:sort:tsconfig.json',
     rules: {
       'jsonc/sort-keys': [
         'error',

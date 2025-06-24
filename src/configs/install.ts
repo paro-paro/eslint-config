@@ -79,7 +79,7 @@ export async function install(ctx: Context): Promise<Config[]> {
 
   const stylistic: Config = {
     files: filesStylistic,
-    name: 'config:install:stylistic',
+    name: 'paroparo:install:stylistic',
     plugins: {
       [prefixStylistic]: pluginStylistic,
     },
@@ -88,7 +88,7 @@ export async function install(ctx: Context): Promise<Config[]> {
   if (!enableTs) {
     config.push({
       files,
-      name: 'config:install:javascript',
+      name: 'paroparo:install:javascript',
       ...LINTER_OPTIONS,
       ...PLUGINS,
 
@@ -116,7 +116,7 @@ export async function install(ctx: Context): Promise<Config[]> {
     const plugins = Object.assign({}, PLUGINS.plugins, { [prefixTs]: pluginTs })
     config.push({
       files,
-      name: 'config:install:typescript',
+      name: 'paroparo:install:typescript',
       ...LINTER_OPTIONS,
       plugins: { ...plugins },
 
@@ -155,7 +155,7 @@ export async function install(ctx: Context): Promise<Config[]> {
 
     config.push({
       files: [GLOB_VUE],
-      name: 'config:install:vue',
+      name: 'paroparo:install:vue',
       ...LINTER_OPTIONS,
       plugins: { vue: pluginVue },
       processor: pluginVue.processors['.vue'],
@@ -190,7 +190,7 @@ export async function install(ctx: Context): Promise<Config[]> {
 
     config.push({
       files: [GLOB_JSON],
-      name: 'config:install:jsonc',
+      name: 'paroparo:install:jsonc',
       plugins: {
         jsonc: pluginJsonc,
       },
@@ -211,7 +211,7 @@ export async function install(ctx: Context): Promise<Config[]> {
 
     config.push({
       files: [GLOB_YML],
-      name: 'config:install:yml',
+      name: 'paroparo:install:yml',
       plugins: { yml: pluginYml },
       languageOptions: { parser: parserYml },
     })
@@ -223,7 +223,7 @@ export async function install(ctx: Context): Promise<Config[]> {
 
     config.push({
       files: [GLOB_MD],
-      name: 'config:install:markdown',
+      name: 'paroparo:install:markdown',
       plugins: { markdown: pluginMarkdown },
       processor: 'markdown/markdown',
     })

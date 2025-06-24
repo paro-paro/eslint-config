@@ -32,8 +32,8 @@ export function overrides(ctx: Context): Config[] {
       : [...GLOB_TEST_JS],
 
     name: enableTs
-      ? 'config:overrides:typescript:tests'
-      : 'config:overrides:javascript:tests',
+      ? 'paroparo:overrides:typescript:tests'
+      : 'paroparo:overrides:javascript:tests',
 
     rules: {
       'no-unused-expressions': 'off',
@@ -46,8 +46,8 @@ export function overrides(ctx: Context): Config[] {
       : [...GLOB_SCRIPTS_JS],
 
     name: enableTs
-      ? 'config:overrides:typescript:scripts'
-      : 'config:overrides:javascript:scripts',
+      ? 'paroparo:overrides:typescript:scripts'
+      : 'paroparo:overrides:javascript:scripts',
 
     rules: {
       'no-console': 'off',
@@ -56,7 +56,7 @@ export function overrides(ctx: Context): Config[] {
 
   const dts: Config = {
     files: [...GLOB_DTS],
-    name: 'config:overrides:typescript:dts',
+    name: 'paroparo:overrides:typescript:dts',
     rules: {
       'eslint-comments/no-unlimited-disable': 'off',
       'import/no-duplicates': 'off',
@@ -70,8 +70,8 @@ export function overrides(ctx: Context): Config[] {
       : [...GLOB_MD_JS],
 
     name: enableTs
-      ? 'config:overrides:typescript:markdown'
-      : 'config:overrides:javascript:markdown',
+      ? 'paroparo:overrides:typescript:markdown'
+      : 'paroparo:overrides:javascript:markdown',
 
     rules: {
       ...{

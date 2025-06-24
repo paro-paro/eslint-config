@@ -31,7 +31,6 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "dev": "tsup --watch & pnpm run preview",
     "build": "tsup",
     "build:typegen": "tsx scripts/typegen.ts",
     "lint": "eslint .",
@@ -47,9 +46,9 @@
     "eslint": "^9.5.0"
   },
   "dependencies": {
-    "@stylistic/eslint-plugin": "^4.4.1",
-    "@typescript-eslint/eslint-plugin": "^8.34.1",
-    "@typescript-eslint/parser": "^8.34.1",
+    "@stylistic/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.35.0",
+    "@typescript-eslint/parser": "^8.35.0",
     "eslint-config-flat-gitignore": "^2.1.0",
     "eslint-plugin-antfu": "^3.1.1",
     "eslint-plugin-eslint-comments": "^3.2.0",

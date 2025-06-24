@@ -9,6 +9,6 @@ export function ignores(options: IgnoresOptions): Config {
 
   return {
     ignores: override ? globs : [...GLOB_EXCLUDE, ...globs],
-    name: 'config:ignores',
+    name: 'paroparo:ignores',
   }
 }

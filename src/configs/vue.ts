@@ -15,7 +15,7 @@ export function vue(ctx: Context): Config[] {
   return [
     {
       files: [GLOB_VUE],
-      name: 'config:rules:vue',
+      name: 'paroparo:rules:vue',
       rules: {
         // base
         ...{

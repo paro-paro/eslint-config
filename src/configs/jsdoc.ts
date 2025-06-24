@@ -13,8 +13,8 @@ export function jsdoc(ctx: Context): Config[] {
     {
       files,
       name: enableTs
-        ? 'config:rules:typescript:jsdoc'
-        : 'config:rules:javascript:jsdoc',
+        ? 'paroparo:rules:typescript:jsdoc'
+        : 'paroparo:rules:javascript:jsdoc',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {

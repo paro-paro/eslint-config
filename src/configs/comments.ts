@@ -12,8 +12,8 @@ export function comments(ctx: Context): Config[] {
     {
       files,
       name: enableTs
-        ? 'config:rules:typescript:eslint-comments'
-        : 'config:rules:javascript:eslint-comments',
+        ? 'paroparo:rules:typescript:eslint-comments'
+        : 'paroparo:rules:javascript:eslint-comments',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {

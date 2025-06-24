@@ -12,8 +12,8 @@ export function sort(ctx: Context): Config[] {
     {
       files,
       name: enableTs
-        ? 'config:rules:typescript:sort'
-        : 'config:rules:javascript:sort',
+        ? 'paroparo:rules:typescript:sort'
+        : 'paroparo:rules:javascript:sort',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {

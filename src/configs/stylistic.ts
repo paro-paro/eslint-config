@@ -30,7 +30,7 @@ export function stylistic(ctx: Context): Config[] {
   return [
     {
       files: filesStylistic,
-      name: 'config:rules:stylistic',
+      name: 'paroparo:rules:stylistic',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {

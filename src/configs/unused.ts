@@ -12,8 +12,8 @@ export function unused(ctx: Context): Config[] {
     {
       files,
       name: enableTs
-        ? 'config:rules:typescript:unused-imports'
-        : 'config:rules:javascript:unused-imports',
+        ? 'paroparo:rules:typescript:unused-imports'
+        : 'paroparo:rules:javascript:unused-imports',
 
       /* eslint-enable perfectionist/sort-objects */
       rules: {
