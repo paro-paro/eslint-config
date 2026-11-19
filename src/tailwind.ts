@@ -9,9 +9,9 @@ import {
 
 export interface TailwindOptions {
   /**
-   * Path to your main CSS file (the one with `@import 'tailwindcss'`).
+   * Path to your Tailwind CSS stylesheet (v4).
    *
-   * @see https://github.com/paro-paro/eslint-config#tailwind-css for how relative paths and file URLs are resolved
+   * @see https://github.com/paro-paro/eslint-config#tailwind-css for how to resolve the path from the ESLint config file
    */
   stylesheet: string | URL
   /**

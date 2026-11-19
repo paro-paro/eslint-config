@@ -59,7 +59,7 @@ pnpm add -D eslint-plugin-better-tailwindcss
 
 | Option       | Required | Description                                                                                    |
 | ------------ | -------- | ---------------------------------------------------------------------------------------------- |
-| `stylesheet` | yes      | Path to your main CSS file (the one with `@import 'tailwindcss'`).                             |
+| `stylesheet` | yes      | Path to your Tailwind CSS stylesheet (v4).                                                     |
 | `cwd`        | no       | The directory from which `tailwindcss` is resolved. Defaults to the directory of `stylesheet`. |
 
 Relative paths are resolved from the directory ESLint runs in. If ESLint may run from elsewhere (editors, monorepos), use `new URL('src/main.css', import.meta.url)`, which resolves from the config file.
