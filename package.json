@@ -1,6 +1,6 @@
 {
   "name": "@paro-paro/eslint-config",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "ESLint config for TypeScript and JavaScript, with opt-in Vue and Tailwind CSS support",
   "keywords": [
     "eslint",
