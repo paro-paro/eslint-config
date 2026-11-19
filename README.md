@@ -17,7 +17,7 @@ ESLint config for TypeScript and JavaScript, with opt-in Vue and Tailwind CSS su
 pnpm add -D @paro-paro/eslint-config eslint typescript
 ```
 
-Requires Node `^22.13.0 || >=24`, ESLint `>=10.4` and TypeScript `>=4.8.4 <6.1.0`.
+Requires Node `^22.22.2 || >=24.15.0`, ESLint `>=10.4` and TypeScript `>=4.8.4 <6.1.0`.
 
 ## Usage
 
@@ -121,6 +121,7 @@ Not included:
 | [eslint-plugin-antfu](https://github.com/antfu/eslint-plugin-antfu)                                        | `antfu/*`              |
 | [eslint-plugin-better-tailwindcss](https://github.com/schoero/eslint-plugin-better-tailwindcss) (optional) | `better-tailwindcss/*` |
 | [eslint-plugin-import-x](https://github.com/un-ts/eslint-plugin-import-x)                                  | `import-x/*`           |
+| [eslint-plugin-jsdoc](https://github.com/gajus/eslint-plugin-jsdoc)                                        | `jsdoc/*`              |
 | [eslint-plugin-perfectionist](https://perfectionist.dev)                                                   | `perfectionist/*`      |
 | [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)                             | `unicorn/*`            |
 | [eslint-plugin-unused-imports](https://github.com/sweepline/eslint-plugin-unused-imports)                  | `unused-imports/*`     |
@@ -128,17 +129,17 @@ Not included:
 
 ## Migrating from v2
 
-- **Requirements:** ESLint `>=10.4`, Node `^22.13.0 || >=24`. The package is ESM only.
+- **Requirements:** ESLint `>=10.4`, Node `^22.22.2 || >=24.15.0`. The package is ESM only.
 - **Options:** only `vue`, `tailwind`, `style` and `gitignore` remain.
   - `ts` and `tsOptions`: TypeScript is always on; type-aware rules are not included.
   - `vue`: no longer detected from installed packages; set `vue: true`.
   - `json`, `yml`, `markdown`: these files are no longer linted. Use a formatter for them.
-  - `jsdoc`, `sort`, `globals`, `stylisticOptions`: removed. Import and export sorting is part of `style`; JavaScript files always get browser, Node and ES2021 globals.
+  - `jsdoc`, `sort`, `globals`, `stylisticOptions`: removed. JSDoc formatting and import and export sorting are part of `style`; JavaScript files always get browser, Node and ES2021 globals.
   - `ignores`: removed, along with the predefined excluded globs. Add a `globalIgnores([...])` config after the options.
   - `stylistic`: renamed to `style`.
   - `gitignore`: now a boolean.
   - `renameRules`: removed. Rules use their plugins' own prefixes.
-- **Rule prefixes in overrides:** `ts/*` → `@typescript-eslint/*`, `stylistic/*` → `@stylistic/*`, `import/*` → `import-x/*`. The `node/*`, `jsdoc/*`, `jsonc/*`, `yml/*` and `eslint-comments/*` rules are gone.
+- **Rule prefixes in overrides:** `ts/*` → `@typescript-eslint/*`, `stylistic/*` → `@stylistic/*`, `import/*` → `import-x/*`. The `node/*`, `jsonc/*`, `yml/*` and `eslint-comments/*` rules are gone, and only the formatting `jsdoc/*` rules remain.
 - **The function returns a Promise.** `export default paroparo()` works as before; code that spreads or edits the result must `await` it first.
 
 ## Inspecting the config

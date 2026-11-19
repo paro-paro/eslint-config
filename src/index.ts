@@ -5,6 +5,7 @@ import stylisticPlugin from '@stylistic/eslint-plugin'
 import gitignoreConfig from 'eslint-config-flat-gitignore'
 import antfuPlugin from 'eslint-plugin-antfu'
 import importPlugin from 'eslint-plugin-import-x'
+import jsdocPlugin from 'eslint-plugin-jsdoc'
 import perfectionistPlugin from 'eslint-plugin-perfectionist'
 import unicornPlugin from 'eslint-plugin-unicorn'
 import unusedImportsPlugin from 'eslint-plugin-unused-imports'
@@ -49,7 +50,7 @@ export interface Options {
   vue?: boolean
   /**
    * Enable Tailwind CSS rules (requires `eslint-plugin-better-tailwindcss`).
-
+   *
    * @default undefined
    */
   tailwind?: TailwindOptions
@@ -96,6 +97,7 @@ export default async function paroparo(
         '@typescript-eslint': tsEslint.plugin,
         'antfu': antfuPlugin,
         'import-x': importPlugin,
+        'jsdoc': jsdocPlugin,
         'perfectionist': perfectionistPlugin,
         'unicorn': unicornPlugin,
         'unused-imports': unusedImportsPlugin,

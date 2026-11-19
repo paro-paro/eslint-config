@@ -17,7 +17,7 @@ export interface TailwindOptions {
   /**
    * Directory from which `tailwindcss` is resolved.
    *
-   * @default The directory of `stylesheet`
+   * @default The `stylesheet` directory.
    */
   cwd?: string | URL
 }

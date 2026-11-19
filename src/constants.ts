@@ -228,6 +228,13 @@ const RULES_STYLE = {
   'antfu/import-dedupe': 'warn',
   'antfu/top-level-function': 'warn',
 
+  'jsdoc/check-alignment': 'warn',
+  'jsdoc/empty-tags': 'warn',
+  'jsdoc/multiline-blocks': 'warn',
+  'jsdoc/no-multi-asterisks': 'warn',
+  'jsdoc/require-asterisk-prefix': 'warn',
+  'jsdoc/tag-lines': ['warn', 'any', { startLines: 1 }],
+
   'import-x/consistent-type-specifier-style': ['warn', 'prefer-top-level'],
   'import-x/newline-after-import': 'warn',
   'import-x/no-duplicates': 'warn',
