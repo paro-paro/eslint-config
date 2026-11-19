@@ -1,16 +1,13 @@
 {
-  "include": [
-    "./src/**/*.ts"
-  ],
+  "include": ["./src/**/*.ts", "./eslint.config.ts", "./tsdown.config.ts"],
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ES2020",
+    "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
+    "lib": ["ESNext"],
+    "types": ["node"],
     "strict": true,
-    "strictNullChecks": true,
-    "esModuleInterop": true,
-    "skipDefaultLibCheck": true,
+    "noEmit": true,
     "skipLibCheck": true
   }
 }

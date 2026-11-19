@@ -1,0 +1,4 @@
+strictDepBuilds: false
+allowBuilds:
+  esbuild: false
+  simple-git-hooks: false

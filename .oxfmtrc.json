@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": ["**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue}"],
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": false,
+  "trailingComma": "all",
+  "insertFinalNewline": true,
+  "endOfLine": "lf",
+  "embeddedLanguageFormatting": "off",
+  "sortPackageJson": { "sortScripts": true }
+}
